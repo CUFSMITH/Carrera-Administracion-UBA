@@ -17,6 +17,8 @@
             --text-main: #333333;
             --approved-bg: #d1e7dd;
             --approved-text: #0f5132;
+            --cursando-bg: #fff3cd;
+            --cursando-text: #856404;
             --available-bg: #cfe2ff;
             --available-text: #084298;
             --locked-bg: #e2e3e5;
@@ -220,6 +222,12 @@
             box-shadow: 0 0 10px rgba(13, 110, 253, 0.4);
         }
 
+        .materia.cursando {
+            background-color: var(--cursando-bg);
+            color: var(--cursando-text);
+            border-color: #ffeeba;
+        }
+
         .materia.approved {
             background-color: var(--approved-bg);
             color: var(--approved-text);
@@ -262,7 +270,7 @@
 
         /* Estilos de la Pestaña de Parciales / Cronograma */
         .cronograma-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 20px;
@@ -274,85 +282,78 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        .parcial-card {
+        .materia-cronograma-card {
             background: #fff8f0;
-            border-left: 5px solid var(--primary);
-            padding: 12px 15px;
-            border-radius: 6px;
-            margin-bottom: 12px;
+            border: 1px solid #fae1d2;
+            border-left: 6px solid var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .materia-cronograma-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        .parcial-info h3 {
-            margin: 0 0 5px 0;
-            color: var(--primary-dark);
-            font-size: 1rem;
+        .exam-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #eee;
         }
 
-        .parcial-info p {
-            margin: 0;
+        .exam-row label {
             font-size: 0.85rem;
+            font-weight: bold;
+            color: #444;
+            min-width: 140px;
+            flex: 1;
+        }
+
+        .exam-row input[type="date"] {
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .options-bar {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            align-items: center;
+            flex-wrap: wrap;
+            background: #f9f9f9;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .options-bar label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
             color: #555;
         }
 
-        .parcial-fecha {
-            font-weight: bold;
-            background: var(--primary);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-        }
-
-        .add-parcial-form {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .add-parcial-form input, .add-parcial-form select {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .btn-add {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .btn-add:hover {
-            background: var(--primary-dark);
-        }
-
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            margin-left: 10px;
-        }
-
         .notes {
-            max-width: 800px;
+            max-width: 900px;
             margin: 30px auto 10px auto;
             background: #fff3cd;
             border: 1px solid #ffeeba;
@@ -403,14 +404,16 @@
 
         <div class="stats">
             <div class="stat-box">Aprobadas: <span id="count-approved">0</span></div>
+            <div class="stat-box">Cursando: <span id="count-cursando">0</span></div>
             <div class="stat-box">Faltantes: <span id="count-missing">34</span></div>
             <div class="stat-box">Disponibles: <span id="count-available">0</span></div>
         </div>
 
         <div class="legend">
             <div class="legend-item"><div class="color-dot" style="background: var(--locked-bg); border: 1px solid #999;"></div> Bloqueada</div>
-            <div class="legend-item"><div class="color-dot" style="background: var(--available-bg);"></div> ¡Disponible para disparar!</div>
-            <div class="legend-item"><div class="color-dot" style="background: var(--approved-bg);"></div> ¡Aprobada!</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--available-bg);"></div> Disponible</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--cursando-bg); border: 1px solid #ffeeba;"></div> Cursando (Doble click)</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--approved-bg);"></div> Aprobada (Click)</div>
         </div>
 
         <!-- PRIMER TRAMO -->
@@ -428,30 +431,22 @@
     <div id="tab-cronograma" class="tab-content">
         <div class="cronograma-container">
             <div class="cronograma-header">
-                <h2>Cronograma de Parciales y Entregas</h2>
+                <h2>Cronograma de Exámenes Automático</h2>
             </div>
-            <p style="font-size: 0.85rem; color: #666;">Saca una captura de pantalla (screenshot) de esta sección para enviársela a una IA y que te arme los recordatorios automáticos.</p>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+                Aquí aparecen automáticamente las materias que marcaste como <strong>Cursando</strong> (haciendo doble clic en ellas). Saca una captura de pantalla (screenshot) de esta sección para enviársela a tu IA de confianza y armar recordatorios.
+            </p>
             
-            <div id="lista-parciales">
+            <div id="lista-materias-cronograma">
                 <!-- Se cargan dinámicamente -->
-            </div>
-
-            <div class="add-parcial-form">
-                <input type="text" id="input-materia" placeholder="Nombre de la materia / Examen">
-                <input type="date" id="input-fecha">
-                <select id="input-tipo">
-                    <option value="1° Parcial">1° Parcial</option>
-                    <option value="2° Parcial">2° Parcial</option>
-                    <option value="Recuperatorio">Recuperatorio</option>
-                    <option value="Final">Final</option>
-                </select>
-                <button class="btn-add" onclick="agregarParcial()">Agregar Examen</button>
             </div>
         </div>
     </div>
 
     <div class="notes">
-        <strong>Aclaración:</strong> Tus materias aprobadas y fechas de parciales quedan guardadas automáticamente en la memoria de este dispositivo (celular o computadora).
+        <strong>Instrucciones:</strong> 
+        • <strong>1 clic:</strong> Alterna entre Aprobada y Sin cursar (si está cursando y recibe 1 clic, pasa a Aprobada).<br>
+        • <strong>2 clics rápidos:</strong> Pasa directamente a Cursando sin importar en qué estado se encuentre.
     </div>
 
     <script>
@@ -466,6 +461,7 @@
             } else {
                 document.getElementById('tab-cronograma').classList.add('active');
                 document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                renderCronograma();
             }
         }
 
@@ -507,9 +503,12 @@
             { id: 903, nombre: "OPTATIVA III (COMPETENCIA)", tramo: 2, req: [] }
         ];
 
-        // Guardado independiente por dispositivo
+        // Memoria por dispositivo
         let approvedIds = JSON.parse(localStorage.getItem('admin_approved_device')) || [];
-        let listaParciales = JSON.parse(localStorage.getItem('admin_parciales_device')) || [];
+        let cursandoIds = JSON.parse(localStorage.getItem('admin_cursando_device')) || [];
+        let examenesData = JSON.parse(localStorage.getItem('admin_examenes_device')) || {};
+
+        let clickTimer = null;
 
         function renderPlan() {
             const container1 = document.getElementById('tramo-1');
@@ -518,12 +517,14 @@
             container2.innerHTML = '';
 
             let approvedCount = 0;
+            let cursandoCount = cursandoIds.length;
             let availableCount = 0;
             const totalMaterias = materiasData.length;
             const primerTramoCompleto = [245, 241, 242, 246, 252, 254].every(id => approvedIds.includes(id));
 
             materiasData.forEach(mat => {
                 const isApproved = approvedIds.includes(mat.id);
+                const isCursando = cursandoIds.includes(mat.id);
                 let isAvailable = false;
 
                 if (isApproved) {
@@ -539,12 +540,13 @@
                         isAvailable = mat.req.every(reqId => approvedIds.includes(reqId));
                     }
 
-                    if (isAvailable) availableCount++;
+                    if (isAvailable && !isCursando) availableCount++;
                 }
 
                 const div = document.createElement('div');
                 div.className = 'materia';
                 if (isApproved) div.classList.add('approved');
+                else if (isCursando) div.classList.add('cursando');
                 else if (isAvailable) div.classList.add('available');
                 else div.classList.add('locked');
 
@@ -553,19 +555,23 @@
                     <div class="codigo">${mat.id}</div>
                 `;
 
+                // Manejo de 1 clic y doble clic inteligente
                 div.onclick = () => {
-                    if (!isApproved && !isAvailable) return;
+                    // Si está bloqueada y no está cursando/aprobada, no hace nada
+                    if (!isApproved && !isAvailable && !isCursando) return;
 
-                    if (!isApproved) {
-                        div.classList.add('shooting');
-                        const crosshair = document.createElement('div');
-                        crosshair.className = 'impact-crosshair';
-                        crosshair.innerHTML = '🎯';
-                        div.appendChild(crosshair);
-
-                        setTimeout(() => { div.classList.remove('shooting'); }, 300);
+                    if (clickTimer !== null) {
+                        // Doble clic / Doble toque detectado
+                        clearTimeout(clickTimer);
+                        clickTimer = null;
+                        handleMateriaAction(mat.id, 'cursando');
+                    } else {
+                        // Clic simple (esperamos brevemente por si viene el segundo)
+                        clickTimer = setTimeout(() => {
+                            clickTimer = null;
+                            handleMateriaAction(mat.id, 'simple');
+                        }, 250);
                     }
-                    toggleApprove(mat.id);
                 };
 
                 if (mat.tramo === 1) container1.appendChild(div);
@@ -576,6 +582,7 @@
             const percentage = Math.round((approvedCount / totalMaterias) * 100);
 
             document.getElementById('count-approved').innerText = approvedCount;
+            document.getElementById('count-cursando').innerText = cursandoCount;
             document.getElementById('count-missing').innerText = missingCount;
             document.getElementById('count-available').innerText = availableCount;
 
@@ -584,87 +591,172 @@
             document.getElementById('progress-text').innerText = percentage + '% Completado (' + approvedCount + '/' + totalMaterias + ')';
 
             localStorage.setItem('admin_approved_device', JSON.stringify(approvedIds));
+            localStorage.setItem('admin_cursando_device', JSON.stringify(cursandoIds));
         }
 
-        function toggleApprove(id) {
-            if (approvedIds.includes(id)) {
-                approvedIds = approvedIds.filter(item => item !== id);
+        function handleMateriaAction(id, tipo) {
+            const isApproved = approvedIds.includes(id);
+            const isCursando = cursandoIds.includes(id);
+
+            if (tipo === 'cursando') {
+                // Forzar estado cursando desde cualquier lado
+                if (!isCursando) {
+                    cursandoIds.push(id);
+                    approvedIds = approvedIds.filter(item => item !== id); // Se quita de aprobadas si estaba
+                    
+                    // Inicializar fechas si no existen
+                    if (!examenesData[id]) {
+                        examenesData[id] = {
+                            splitParcial1: false,
+                            splitParcial2: false,
+                            noFinal: false,
+                            fechas: { p1_unico: '', p1_prac: '', p1_teor: '', p2_unico: '', p2_prac: '', p2_teor: '', recu: '', final: '' }
+                        };
+                    }
+                } else {
+                    // Si ya estaba cursando y le hacen doble clic, podemos quitarlo de cursando o dejarlo (lo quitamos para alternar)
+                    cursandoIds = cursandoIds.filter(item => item !== id);
+                    delete examenesData[id];
+                }
             } else {
-                approvedIds.push(id);
+                // Clic simple
+                if (isCursando) {
+                    // Si estaba cursando y recibe 1 clic, pasa a aprobada
+                    cursandoIds = cursandoIds.filter(item => item !== id);
+                    delete examenesData[id];
+                    if (!approvedIds.includes(id)) approvedIds.push(id);
+                } else if (isApproved) {
+                    // Si estaba aprobada, vuelve a pendiente (sin cursar)
+                    approvedIds = approvedIds.filter(item => item !== id);
+                } else {
+                    // Si estaba pendiente, pasa a aprobada
+                    approvedIds.push(id);
+                }
             }
+
             renderPlan();
+            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
         }
 
         function resetProgress() {
-            if (confirm('¿Estás seguro de reiniciar todo tu progreso en este dispositivo?')) {
+            if (confirm('¿Estás seguro de reiniciar todo tu progreso y materias en curso en este dispositivo?')) {
                 approvedIds = [];
+                cursandoIds = [];
+                examenesData = {};
+                localStorage.removeItem('admin_approved_device');
+                localStorage.removeItem('admin_cursando_device');
+                localStorage.removeItem('admin_examenes_device');
                 renderPlan();
             }
         }
 
-        // Lógica de Cronograma de Parciales
+        // Renderizado del Cronograma de Exámenes Automático
         function renderCronograma() {
-            const container = document.getElementById('lista-parciales');
+            const container = document.getElementById('lista-materias-cronograma');
             container.innerHTML = '';
 
-            if (listaParciales.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0;">No hay exámenes cargados todavía. Agrega tus fechas usando el formulario de abajo.</p>';
-            } else {
-                // Ordenar por fecha cronológicamente
-                listaParciales.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-
-                listaParciales.forEach(p => {
-                    const card = document.createElement('div');
-                    card.className = 'parcial-card';
-                    card.innerHTML = `
-                        <div class="parcial-info">
-                            <h3>${p.materia}</h3>
-                            <p>${p.tipo}</p>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="parcial-fecha">📅 ${p.fecha}</span>
-                            <button class="btn-delete" onclick="eliminarParcial(${p.id})">❌</button>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            }
-
-            // Guardar permanentemente en LocalStorage
-            localStorage.setItem('admin_parciales_device', JSON.stringify(listaParciales));
-        }
-
-        function agregarParcial() {
-            const materia = document.getElementById('input-materia').value.trim();
-            const fecha = document.getElementById('input-fecha').value;
-            const tipo = document.getElementById('input-tipo').value;
-
-            if (!materia || !fecha) {
-                alert('Por favor completa el nombre de la materia y la fecha.');
+            if (cursandoIds.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0;">No tienes materias marcadas como <strong>Cursando</strong>. Ve a la pestaña "Plan de Materias" y haz doble clic sobre la materia que estés cursando.</p>';
                 return;
             }
 
-            const nuevo = {
-                id: Date.now(),
-                materia,
-                tipo,
-                fecha
-            };
+            cursandoIds.forEach(id => {
+                const mat = materiasData.find(m => m.id === id);
+                if (!mat) return;
 
-            listaParciales.push(nuevo);
-            document.getElementById('input-materia').value = '';
-            document.getElementById('input-fecha').value = '';
+                if (!examenesData[id]) {
+                    examenesData[id] = {
+                        splitParcial1: false,
+                        splitParcial2: false,
+                        noFinal: false,
+                        fechas: { p1_unico: '', p1_prac: '', p1_teor: '', p2_unico: '', p2_prac: '', p2_teor: '', recu: '', final: '' }
+                    };
+                }
+
+                const data = examenesData[id];
+
+                const card = document.createElement('div');
+                card.className = 'materia-cronograma-card';
+                card.innerHTML = `
+                    <h3>
+                        <span>📚 ${mat.nombre}</span>
+                        <button style="font-size: 0.75rem; background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;" onclick="handleMateriaAction(${mat.id}, 'cursando'); renderCronograma();">Dejar de cursar</button>
+                    </h3>
+
+                    <!-- 1er Parcial -->
+                    <div class="exam-row">
+                        <label>1° Parcial:</label>
+                        ${!data.splitParcial1 ? `
+                            <input type="date" value="${data.fechas.p1_unico || ''}" onchange="actualizarFecha(${mat.id}, 'p1_unico', this.value)">
+                        ` : `
+                            <div style="display: flex; gap: 5px; flex: 2; flex-wrap: wrap;">
+                                <input type="date" title="Práctico" value="${data.fechas.p1_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p1_prac', this.value)" placeholder="Práctico">
+                                <input type="date" title="Teórico" value="${data.fechas.p1_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p1_teor', this.value)" placeholder="Teórico">
+                            </div>
+                        `}
+                    </div>
+
+                    <!-- 2do Parcial -->
+                    <div class="exam-row">
+                        <label>2° Parcial:</label>
+                        ${!data.splitParcial2 ? `
+                            <input type="date" value="${data.fechas.p2_unico || ''}" onchange="actualizarFecha(${mat.id}, 'p2_unico', this.value)">
+                        ` : `
+                            <div style="display: flex; gap: 5px; flex: 2; flex-wrap: wrap;">
+                                <input type="date" title="Práctico" value="${data.fechas.p2_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p2_prac', this.value)" placeholder="Práctico">
+                                <input type="date" title="Teórico" value="${data.fechas.p2_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p2_teor', this.value)" placeholder="Teórico">
+                            </div>
+                        `}
+                    </div>
+
+                    <!-- Recuperatorio -->
+                    <div class="exam-row">
+                        <label>Recuperatorio:</label>
+                        <input type="date" value="${data.fechas.recu || ''}" onchange="actualizarFecha(${mat.id}, 'recu', this.value)">
+                    </div>
+
+                    <!-- Examen Final -->
+                    ${!data.noFinal ? `
+                    <div class="exam-row">
+                        <label>Examen Final:</label>
+                        <input type="date" value="${data.fechas.final || ''}" onchange="actualizarFecha(${mat.id}, 'final', this.value)">
+                    </div>
+                    ` : ''}
+
+                    <!-- Opciones avanzadas por materia -->
+                    <div class="options-bar">
+                        <label><input type="checkbox" ${data.splitParcial1 ? 'checked' : ''} onchange="toggleSplit(${mat.id}, 1, this.checked)"> Dividir 1° Parcial (Práctico / Teórico)</label>
+                        <label><input type="checkbox" ${data.splitParcial2 ? 'checked' : ''} onchange="toggleSplit(${mat.id}, 2, this.checked)"> Dividir 2° Parcial (Práctico / Teórico)</label>
+                        <label><input type="checkbox" ${data.noFinal ? 'checked' : ''} onchange="toggleNoFinal(${mat.id}, this.checked)"> Sin Examen Final (Promociona)</label>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function actualizarFecha(materiaId, campo, valor) {
+            if (!examenesData[materiaId]) return;
+            examenesData[materiaId].fechas[campo] = valor;
+            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
+        }
+
+        function toggleSplit(materiaId, parcialNum, isChecked) {
+            if (!examenesData[materiaId]) return;
+            if (parcialNum === 1) examenesData[materiaId].splitParcial1 = isChecked;
+            if (parcialNum === 2) examenesData[materiaId].splitParcial2 = isChecked;
+            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
             renderCronograma();
         }
 
-        function eliminarParcial(id) {
-            listaParciales = listaParciales.filter(p => p.id !== id);
+        function toggleNoFinal(materiaId, isChecked) {
+            if (!examenesData[materiaId]) return;
+            examenesData[materiaId].noFinal = isChecked;
+            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
             renderCronograma();
         }
 
         // Inicializar vistas
         renderPlan();
-        renderCronograma();
     </script>
 </body>
 </html>
