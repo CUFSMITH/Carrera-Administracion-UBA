@@ -268,37 +268,43 @@
             100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
         }
 
-        /* Estilos de la Pestaña de Parciales / Cronograma */
-        .cronograma-container {
-            max-width: 900px;
+        /* Diseño de Dos Columnas para el Cronograma (Línea de tiempo a la izquierda, carga a la derecha) */
+        .cronograma-layout {
+            max-width: 1250px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .cronograma-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cronograma-pane {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .cronograma-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
         .materia-cronograma-card {
             background: #fff8f0;
             border: 1px solid #fae1d2;
             border-left: 6px solid var(--primary);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
         .materia-cronograma-card h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
             color: var(--primary-dark);
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -306,40 +312,40 @@
 
         .exam-row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             flex-wrap: wrap;
             background: white;
-            padding: 8px;
+            padding: 6px 8px;
             border-radius: 6px;
             border: 1px solid #eee;
         }
 
         .exam-row label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             color: #444;
-            min-width: 140px;
+            min-width: 110px;
             flex: 1;
         }
 
         .exam-row input[type="date"] {
-            padding: 5px 8px;
+            padding: 4px 6px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .options-bar {
             display: flex;
-            gap: 15px;
-            margin-top: 10px;
-            font-size: 0.85rem;
+            gap: 10px;
+            margin-top: 8px;
+            font-size: 0.78rem;
             align-items: center;
             flex-wrap: wrap;
             background: #f9f9f9;
-            padding: 8px;
+            padding: 6px;
             border-radius: 5px;
         }
 
@@ -347,9 +353,93 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             font-weight: 600;
             color: #555;
+        }
+
+        /* Banner de Próximos Exámenes */
+        .proximo-examen-banner {
+            background: linear-gradient(135deg, #fff3cd, #ffe8a1);
+            border: 1px solid #ffeeba;
+            border-left: 6px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .proximo-examen-banner h3 {
+            margin: 0 0 6px 0;
+            color: #856404;
+            font-size: 0.95rem;
+        }
+
+        /* Estilo de la Línea de Tiempo Visual */
+        .timeline-container {
+            position: relative;
+            padding-left: 25px;
+            margin-top: 15px;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 18px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            transition: transform 0.1s;
+        }
+
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 15px;
+            width: 11px;
+            height: 11px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: #f1f3f5;
+            color: #495057;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-weight: 600;
         }
 
         .notes {
@@ -427,19 +517,37 @@
         <button class="reset-btn" onclick="resetProgress()">Reiniciar Progreso</button>
     </div>
 
-    <!-- PESTAÑA 2: CRONOGRAMA DE PARCIALES -->
+    <!-- PESTAÑA 2: CRONOGRAMA DE PARCIALE Y LÍNEA DE TIEMPO -->
     <div id="tab-cronograma" class="tab-content">
-        <div class="cronograma-container">
-            <div class="cronograma-header">
-                <h2>Cronograma de Exámenes Automático</h2>
-            </div>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
-                Aquí aparecen automáticamente las materias que marcaste como <strong>Cursando</strong> (haciendo doble clic en ellas). Saca una captura de pantalla (screenshot) de esta sección para enviársela a tu IA de confianza y armar recordatorios.
-            </p>
+        <div class="cronograma-layout">
             
-            <div id="lista-materias-cronograma">
-                <!-- Se cargan dinámicamente -->
+            <!-- COLUMNA IZQUIERDA: LÍNEA DE TIEMPO PRINCIPAL (Ocupa la mayor parte visual) -->
+            <div class="cronograma-pane">
+                <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗓️ Línea de Tiempo de Exámenes</h2>
+                
+                <!-- Banner de Próximos Exámenes (soporta múltiples en la semana) -->
+                <div id="proximo-examen-banner" class="proximo-examen-banner" style="display: none;">
+                    <h3>🔔 Próximo(s) Examen(es) a Rendir:</h3>
+                    <div id="proximo-examen-contenido" style="font-size: 0.9rem; font-weight: bold; color: #533f04;"></div>
+                </div>
+
+                <div id="timeline-lista" class="timeline-container">
+                    <p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía. Carga las fechas a la derecha.</p>
+                </div>
             </div>
+
+            <!-- COLUMNA DERECHA: PANEL PARA CARGAR LAS FECHAS DE LAS MATERIAS EN CURSO -->
+            <div class="cronograma-pane" style="background: #faf8f5;">
+                <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">✍️ Cargar Fechas</h2>
+                <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">
+                    Aquí configuras las fechas de las materias marcadas como <strong>Cursando</strong> en la pestaña anterior.
+                </p>
+                
+                <div id="lista-materias-cronograma">
+                    <!-- Se cargan dinámicamente -->
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -555,18 +663,14 @@
                     <div class="codigo">${mat.id}</div>
                 `;
 
-                // Manejo de 1 clic y doble clic inteligente
                 div.onclick = () => {
-                    // Si está bloqueada y no está cursando/aprobada, no hace nada
                     if (!isApproved && !isAvailable && !isCursando) return;
 
                     if (clickTimer !== null) {
-                        // Doble clic / Doble toque detectado
                         clearTimeout(clickTimer);
                         clickTimer = null;
                         handleMateriaAction(mat.id, 'cursando');
                     } else {
-                        // Clic simple (esperamos brevemente por si viene el segundo)
                         clickTimer = setTimeout(() => {
                             clickTimer = null;
                             handleMateriaAction(mat.id, 'simple');
@@ -599,12 +703,10 @@
             const isCursando = cursandoIds.includes(id);
 
             if (tipo === 'cursando') {
-                // Forzar estado cursando desde cualquier lado
                 if (!isCursando) {
                     cursandoIds.push(id);
-                    approvedIds = approvedIds.filter(item => item !== id); // Se quita de aprobadas si estaba
+                    approvedIds = approvedIds.filter(item => item !== id);
                     
-                    // Inicializar fechas si no existen
                     if (!examenesData[id]) {
                         examenesData[id] = {
                             splitParcial1: false,
@@ -614,22 +716,17 @@
                         };
                     }
                 } else {
-                    // Si ya estaba cursando y le hacen doble clic, podemos quitarlo de cursando o dejarlo (lo quitamos para alternar)
                     cursandoIds = cursandoIds.filter(item => item !== id);
                     delete examenesData[id];
                 }
             } else {
-                // Clic simple
                 if (isCursando) {
-                    // Si estaba cursando y recibe 1 clic, pasa a aprobada
                     cursandoIds = cursandoIds.filter(item => item !== id);
                     delete examenesData[id];
                     if (!approvedIds.includes(id)) approvedIds.push(id);
                 } else if (isApproved) {
-                    // Si estaba aprobada, vuelve a pendiente (sin cursar)
                     approvedIds = approvedIds.filter(item => item !== id);
                 } else {
-                    // Si estaba pendiente, pasa a aprobada
                     approvedIds.push(id);
                 }
             }
@@ -652,13 +749,17 @@
 
         // Renderizado del Cronograma de Exámenes Automático
         function renderCronograma() {
-            const container = document.getElementById('lista-materias-cronograma');
-            container.innerHTML = '';
+            const containerForm = document.getElementById('lista-materias-cronograma');
+            containerForm.innerHTML = '';
 
             if (cursandoIds.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0;">No tienes materias marcadas como <strong>Cursando</strong>. Ve a la pestaña "Plan de Materias" y haz doble clic sobre la materia que estés cursando.</p>';
+                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0; font-size: 0.85rem;">No tienes materias en curso. Haz doble clic en el plan de estudios.</p>';
+                document.getElementById('proximo-examen-banner').style.display = 'none';
+                document.getElementById('timeline-lista').innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía.</p>';
                 return;
             }
+
+            let todasLasFechas = [];
 
             cursandoIds.forEach(id => {
                 const mat = materiasData.find(m => m.id === id);
@@ -674,48 +775,61 @@
                 }
 
                 const data = examenesData[id];
+                const regFechas = data.fechas;
 
+                if (!data.splitParcial1 && regFechas.p1_unico) todasLasFechas.push({ fecha: regFechas.p1_unico, etiqueta: '1° Parcial', materia: mat.nombre });
+                if (data.splitParcial1) {
+                    if (regFechas.p1_prac) todasLasFechas.push({ fecha: regFechas.p1_prac, etiqueta: '1° Parcial (Práctico)', materia: mat.nombre });
+                    if (regFechas.p1_teor) todasLasFechas.push({ fecha: regFechas.p1_teor, etiqueta: '1° Parcial (Teórico)', materia: mat.nombre });
+                }
+
+                if (!data.splitParcial2 && regFechas.p2_unico) todasLasFechas.push({ fecha: regFechas.p2_unico, etiqueta: '2° Parcial', materia: mat.nombre });
+                if (data.splitParcial2) {
+                    if (regFechas.p2_prac) todasLasFechas.push({ fecha: regFechas.p2_prac, etiqueta: '2° Parcial (Práctico)', materia: mat.nombre });
+                    if (regFechas.p2_teor) todasLasFechas.push({ fecha: regFechas.p2_teor, etiqueta: '2° Parcial (Teórico)', materia: mat.nombre });
+                }
+
+                if (regFechas.recu) todasLasFechas.push({ fecha: regFechas.recu, etiqueta: 'Recuperatorio', materia: mat.nombre });
+                if (!data.noFinal && regFechas.final) todasLasFechas.push({ fecha: regFechas.final, etiqueta: 'Examen Final', materia: mat.nombre });
+
+                // Tarjeta de carga en el panel derecho
                 const card = document.createElement('div');
                 card.className = 'materia-cronograma-card';
                 card.innerHTML = `
                     <h3>
                         <span>📚 ${mat.nombre}</span>
-                        <button style="font-size: 0.75rem; background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;" onclick="handleMateriaAction(${mat.id}, 'cursando'); renderCronograma();">Dejar de cursar</button>
+                        <button style="font-size: 0.7rem; background: #dc3545; color: white; border: none; padding: 3px 6px; border-radius: 4px; cursor: pointer;" onclick="handleMateriaAction(${mat.id}, 'cursando'); renderCronograma();">Quitar</button>
                     </h3>
 
-                    <!-- 1er Parcial -->
                     <div class="exam-row">
                         <label>1° Parcial:</label>
                         ${!data.splitParcial1 ? `
                             <input type="date" value="${data.fechas.p1_unico || ''}" onchange="actualizarFecha(${mat.id}, 'p1_unico', this.value)">
                         ` : `
-                            <div style="display: flex; gap: 5px; flex: 2; flex-wrap: wrap;">
+                            <div style="display: flex; gap: 4px; flex: 2; flex-wrap: wrap;">
                                 <input type="date" title="Práctico" value="${data.fechas.p1_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p1_prac', this.value)" placeholder="Práctico">
                                 <input type="date" title="Teórico" value="${data.fechas.p1_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p1_teor', this.value)" placeholder="Teórico">
                             </div>
                         `}
                     </div>
 
-                    <!-- 2do Parcial -->
                     <div class="exam-row">
                         <label>2° Parcial:</label>
                         ${!data.splitParcial2 ? `
                             <input type="date" value="${data.fechas.p2_unico || ''}" onchange="actualizarFecha(${mat.id}, 'p2_unico', this.value)">
                         ` : `
-                            <div style="display: flex; gap: 5px; flex: 2; flex-wrap: wrap;">
+                            <div style="display: flex; gap: 4px; flex: 2; flex-wrap: wrap;">
                                 <input type="date" title="Práctico" value="${data.fechas.p2_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p2_prac', this.value)" placeholder="Práctico">
                                 <input type="date" title="Teórico" value="${data.fechas.p2_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p2_teor', this.value)" placeholder="Teórico">
                             </div>
                         `}
                     </div>
 
-                    <!-- Recuperatorio -->
                     <div class="exam-row">
                         <label>Recuperatorio:</label>
                         <input type="date" value="${data.fechas.recu || ''}" onchange="actualizarFecha(${mat.id}, 'recu', this.value)">
                     </div>
 
-                    <!-- Examen Final -->
                     ${!data.noFinal ? `
                     <div class="exam-row">
                         <label>Examen Final:</label>
@@ -723,21 +837,77 @@
                     </div>
                     ` : ''}
 
-                    <!-- Opciones avanzadas por materia -->
                     <div class="options-bar">
-                        <label><input type="checkbox" ${data.splitParcial1 ? 'checked' : ''} onchange="toggleSplit(${mat.id}, 1, this.checked)"> Dividir 1° Parcial (Práctico / Teórico)</label>
-                        <label><input type="checkbox" ${data.splitParcial2 ? 'checked' : ''} onchange="toggleSplit(${mat.id}, 2, this.checked)"> Dividir 2° Parcial (Práctico / Teórico)</label>
-                        <label><input type="checkbox" ${data.noFinal ? 'checked' : ''} onchange="toggleNoFinal(${mat.id}, this.checked)"> Sin Examen Final (Promociona)</label>
+                        <label><input type="checkbox" ${data.splitParcial1 ? 'checked' : ''} onchange="toggleSplit(${mat.id}, 1, this.checked)"> Dividir 1°</label>
+                        <label><input type="checkbox" ${data.splitParcial2 ? 'checked' : ''} onchange="toggleSplit(${mat.id}, 2, this.checked)"> Dividir 2°</label>
+                        <label><input type="checkbox" ${data.noFinal ? 'checked' : ''} onchange="toggleNoFinal(${mat.id}, this.checked)"> Promociona</label>
                     </div>
                 `;
-                container.appendChild(card);
+                containerForm.appendChild(card);
             });
+
+            // Ordenar cronológicamente
+            todasLasFechas.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+
+            // Renderizar Línea de Tiempo en la columna izquierda
+            const timelineContainer = document.getElementById('timeline-lista');
+            timelineContainer.innerHTML = '';
+            if (todasLasFechas.length === 0) {
+                timelineContainer.innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía.</p>';
+            } else {
+                todasLasFechas.forEach(item => {
+                    const node = document.createElement('div');
+                    node.className = 'timeline-node';
+                    node.innerHTML = `
+                        <div class="timeline-date">${formatearFechaLegible(item.fecha)}</div>
+                        <div class="timeline-title">${item.materia}</div>
+                        <div><span class="timeline-tag">${item.etiqueta}</span></div>
+                    `;
+                    timelineContainer.appendChild(node);
+                });
+            }
+
+            // Próximo(s) examen(es)
+            const hoyStr = new Date().toISOString().split('T')[0];
+            const futuras = todasLasFechas.filter(item => item.fecha >= hoyStr);
+
+            const banner = document.getElementById('proximo-examen-banner');
+            const bannerContenido = document.getElementById('proximo-examen-contenido');
+
+            if (futuras.length === 0) {
+                banner.style.display = 'none';
+            } else {
+                banner.style.display = 'block';
+                const primeraFecha = futuras[0].fecha;
+                const d1 = new Date(primeraFecha);
+                const limiteSemana = new Date(d1);
+                limiteSemana.setDate(d1.getDate() + 6);
+
+                const examenesEnLaSemana = futuras.filter(item => {
+                    const f = new Date(item.fecha);
+                    return f >= d1 && f <= limiteSemana;
+                });
+
+                let htmlProximos = '';
+                examenesEnLaSemana.forEach(ex => {
+                    htmlProximos += `<div>• ${ex.materia} (${ex.etiqueta}) — <strong>${formatearFechaLegible(ex.fecha)}</strong></div>`;
+                });
+                bannerContenido.innerHTML = htmlProximos;
+            }
+        }
+
+        function formatearFechaLegible(fechaIso) {
+            if (!fechaIso) return '';
+            const partes = fechaIso.split('-');
+            if (partes.length !== 3) return fechaIso;
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
         }
 
         function actualizarFecha(materiaId, campo, valor) {
             if (!examenesData[materiaId]) return;
             examenesData[materiaId].fechas[campo] = valor;
             localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
+            renderCronograma();
         }
 
         function toggleSplit(materiaId, parcialNum, isChecked) {
