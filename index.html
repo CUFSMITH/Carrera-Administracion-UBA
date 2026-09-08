@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lic. en Administración - Mi Carrera UBA</title>
-    <!-- Favicon e Icono para pantallas de inicio (iOS / Android) -->
+    <title>Licenciatura en Administración - Mi Carrera</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/graduation-cap.png">
     <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/graduation-cap.png">
     
     <style>
         :root {
-            --primary: #d97736;
-            --primary-dark: #b85e23;
+            --primary: #c90035;
+            --primary-dark: #9e0029;
             --bg-color: #fdfbf7;
             --card-bg: #ffffff;
             --text-main: #333333;
-            --approved-bg: #d1e7dd;
-            --approved-text: #0f5132;
-            --cursando-bg: #fff3cd;
-            --cursando-text: #856404;
-            --available-bg: #cfe2ff;
-            --available-text: #084298;
-            --locked-bg: #e2e3e5;
-            --locked-text: #6c757d;
+            
+            /* Paleta en tonos pastel suaves y bajo contraste */
+            --approved-bg: #d1e7dd;      /* Verde clarito */
+            --approved-text: #0f5132;    /* Texto verde oscuro */
+            --cursando-bg: #fff3cd;      /* Amarillo pastel suave */
+            --cursando-text: #664d03;    /* Texto marrón suave */
+            --available-bg: #e7f1ff;     /* Celeste pastel */
+            --available-text: #084298;   /* Texto azul suave */
+            --locked-bg: #e9ecef;        /* Gris claro para bloqueadas */
+            --locked-text: #adb5bd;      /* Texto gris suave */
         }
 
         body {
@@ -44,7 +45,6 @@
             margin-bottom: 5px;
         }
 
-        /* Navegación por pestañas */
         .tabs {
             display: flex;
             justify-content: center;
@@ -77,7 +77,6 @@
             display: block;
         }
 
-        /* Barra de progreso */
         .progress-container {
             max-width: 600px;
             margin: 0 auto 20px auto;
@@ -91,7 +90,7 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #28a745, #20c997);
+            background: linear-gradient(90deg, #198754, #20c997);
             width: 0%;
             transition: width 0.4s ease;
         }
@@ -137,12 +136,13 @@
             align-items: center;
             gap: 5px;
             font-size: 0.85rem;
+            font-weight: 600;
         }
 
         .color-dot {
-            width: 15px;
-            height: 15px;
-            border-radius: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
         }
 
         .section-title {
@@ -159,7 +159,7 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 12px;
             max-width: 1200px;
             margin: 0 auto;
@@ -177,7 +177,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 75px;
+            min-height: 85px;
             position: relative;
             overflow: hidden;
         }
@@ -187,88 +187,76 @@
         }
 
         .materia .codigo {
-            font-size: 0.7rem;
-            background: #eee;
-            padding: 2px 5px;
+            font-size: 0.65rem;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
             border-radius: 4px;
             align-self: center;
             margin-top: 4px;
-            color: #666;
+            color: inherit;
         }
 
         .materia .nombre {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.8rem;
             line-height: 1.1;
+            color: #9e0029;
         }
 
-        /* Estados de las materias */
+        .materia .sub {
+            font-size: 0.72rem;
+            color: #555;
+            margin-top: 2px;
+        }
+
+        /* Estilos aplicados por estado */
         .materia.locked {
             background-color: var(--locked-bg);
-            color: var(--locked-text);
-            border-color: #b0bec5;
-            opacity: 0.6;
+            border-color: #dee2e6;
+            opacity: 0.7;
             cursor: not-allowed;
+        }
+        .materia.locked .nombre, .materia.locked .sub, .materia.locked .codigo { 
+            color: #6c757d !important; 
         }
 
         .materia.available {
             background-color: var(--available-bg);
+            border-color: #86b7fe;
             color: var(--available-text);
-            border-color: #9ec5fe;
         }
-
-        .materia.available:hover {
-            border-color: #0d6efd;
-            box-shadow: 0 0 10px rgba(13, 110, 253, 0.4);
+        .materia.available .nombre {
+            color: var(--available-text);
         }
 
         .materia.cursando {
             background-color: var(--cursando-bg);
+            border-color: #ffe69c;
             color: var(--cursando-text);
-            border-color: #ffeeba;
+        }
+        .materia.cursando .nombre,
+        .materia.cursando .sub,
+        .materia.cursando .codigo {
+            color: var(--cursando-text) !important;
         }
 
         .materia.approved {
             background-color: var(--approved-bg);
-            color: var(--approved-text);
             border-color: #badbcc;
+            color: var(--approved-text);
+        }
+        .materia.approved .nombre, 
+        .materia.approved .sub, 
+        .materia.approved .codigo {
+            color: var(--approved-text) !important;
+        }
+        .materia.approved .nombre {
             text-decoration: line-through;
         }
-
         .materia.approved .codigo {
-            background: #a3cfbb;
-            color: #051b11;
+            background: rgba(15, 81, 50, 0.08);
         }
 
-        /* Efecto de disparo del minijuego */
-        @keyframes shootEffect {
-            0% { background-color: #ff4d4d; transform: scale(1.05); filter: brightness(1.5); }
-            50% { background-color: #ffff66; transform: scale(0.95); }
-            100% { background-color: var(--approved-bg); transform: scale(1); }
-        }
-
-        .materia.shooting {
-            animation: shootEffect 0.3s ease;
-        }
-
-        .impact-crosshair {
-            position: absolute;
-            color: red;
-            font-weight: bold;
-            font-size: 1.5rem;
-            pointer-events: none;
-            animation: fadeOut 0.4s forwards;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes fadeOut {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
-        }
-
-        /* Diseño de Dos Columnas para el Cronograma (Línea de tiempo a la izquierda, carga a la derecha) */
         .cronograma-layout {
             max-width: 1250px;
             margin: 0 auto;
@@ -292,8 +280,8 @@
         }
 
         .materia-cronograma-card {
-            background: #fff8f0;
-            border: 1px solid #fae1d2;
+            background: #fff8f8;
+            border: 1px solid #fcd2e1;
             border-left: 6px solid var(--primary);
             padding: 12px;
             border-radius: 8px;
@@ -358,9 +346,8 @@
             color: #555;
         }
 
-        /* Banner de Próximos Exámenes */
         .proximo-examen-banner {
-            background: linear-gradient(135deg, #fff3cd, #ffe8a1);
+            background: #fff3cd;
             border: 1px solid #ffeeba;
             border-left: 6px solid #ffc107;
             padding: 15px;
@@ -370,12 +357,24 @@
         }
 
         .proximo-examen-banner h3 {
-            margin: 0 0 6px 0;
+            margin: 0 0 10px 0;
             color: #856404;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 700;
         }
 
-        /* Estilo de la Línea de Tiempo Visual */
+        .proximo-examen-banner ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.9rem;
+            color: #533f04;
+            line-height: 1.5;
+        }
+
+        .proximo-examen-banner li {
+            margin-bottom: 4px;
+        }
+
         .timeline-container {
             position: relative;
             padding-left: 25px;
@@ -401,7 +400,6 @@
             border-radius: 8px;
             padding: 12px 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-            transition: transform 0.1s;
         }
 
         .timeline-node::before {
@@ -478,15 +476,12 @@
         <p>Panel de Control Académico y Cronograma</p>
     </header>
 
-    <!-- Pestañas de Navegación -->
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('plan')">Plan de Materias</button>
         <button class="tab-btn" onclick="switchTab('cronograma')">Fechas de Parciales 📅</button>
     </div>
 
-    <!-- PESTAÑA 1: PLAN DE ESTUDIO -->
     <div id="tab-plan" class="tab-content active">
-        <!-- Barra de Progreso -->
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
             <div class="progress-text" id="progress-text">0% Completado</div>
@@ -495,40 +490,37 @@
         <div class="stats">
             <div class="stat-box">Aprobadas: <span id="count-approved">0</span></div>
             <div class="stat-box">Cursando: <span id="count-cursando">0</span></div>
-            <div class="stat-box">Faltantes: <span id="count-missing">34</span></div>
+            <div class="stat-box">Faltantes: <span id="count-missing">35</span></div>
             <div class="stat-box">Disponibles: <span id="count-available">0</span></div>
         </div>
 
         <div class="legend">
-            <div class="legend-item"><div class="color-dot" style="background: var(--locked-bg); border: 1px solid #999;"></div> Bloqueada</div>
-            <div class="legend-item"><div class="color-dot" style="background: var(--available-bg);"></div> Disponible</div>
-            <div class="legend-item"><div class="color-dot" style="background: var(--cursando-bg); border: 1px solid #ffeeba;"></div> Cursando (Doble click)</div>
-            <div class="legend-item"><div class="color-dot" style="background: var(--approved-bg);"></div> Aprobada (Click)</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--locked-bg); border: 1px solid #ccc;"></div> Bloqueada</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--available-bg); border: 1px solid #86b7fe;"></div> Disponible</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--cursando-bg); border: 1px solid #ffe69c;"></div> Cursando</div>
+            <div class="legend-item"><div class="color-dot" style="background: var(--approved-bg); border: 1px solid #badbcc;"></div> Aprobada</div>
         </div>
 
-        <!-- PRIMER TRAMO -->
         <div class="section-title">PRIMER TRAMO</div>
         <div class="grid-container" id="tramo-1"></div>
 
-        <!-- SEGUNDO TRAMO -->
-        <div class="section-title">SEGUNDO TRAMO</div>
+        <div class="section-title">SEGUNDO TRAMO (Requisito: 1er Tramo Completo)</div>
         <div class="grid-container" id="tramo-2"></div>
+
+        <div class="section-title">MATERIAS FINALES Y ORIENTACIONES</div>
+        <div class="grid-container" id="tramo-final"></div>
 
         <button class="reset-btn" onclick="resetProgress()">Reiniciar Progreso</button>
     </div>
 
-    <!-- PESTAÑA 2: CRONOGRAMA DE PARCIALE Y LÍNEA DE TIEMPO -->
     <div id="tab-cronograma" class="tab-content">
         <div class="cronograma-layout">
-            
-            <!-- COLUMNA IZQUIERDA: LÍNEA DE TIEMPO PRINCIPAL (Ocupa la mayor parte visual) -->
             <div class="cronograma-pane">
                 <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗓️ Línea de Tiempo de Exámenes</h2>
                 
-                <!-- Banner de Próximos Exámenes (soporta múltiples en la semana) -->
                 <div id="proximo-examen-banner" class="proximo-examen-banner" style="display: none;">
-                    <h3>🔔 Próximo(s) Examen(es) a Rendir:</h3>
-                    <div id="proximo-examen-contenido" style="font-size: 0.9rem; font-weight: bold; color: #533f04;"></div>
+                    <h3>Proximos parciales</h3>
+                    <ul id="proximo-examen-lista-ul"></ul>
                 </div>
 
                 <div id="timeline-lista" class="timeline-container">
@@ -536,29 +528,25 @@
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: PANEL PARA CARGAR LAS FECHAS DE LAS MATERIAS EN CURSO -->
-            <div class="cronograma-pane" style="background: #faf8f5;">
+            <div class="cronograma-pane" style="background: #fffcfd;">
                 <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">✍️ Cargar Fechas</h2>
                 <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">
-                    Aquí configuras las fechas de las materias marcadas como <strong>Cursando</strong> en la pestaña anterior.
+                    Aquí figuran las materias que marcaste como cursando o aquellas que tienen fechas agendadas guardadas de forma segura.
                 </p>
                 
-                <div id="lista-materias-cronograma">
-                    <!-- Se cargan dinámicamente -->
-                </div>
+                <div id="lista-materias-cronograma"></div>
             </div>
-
         </div>
     </div>
 
     <div class="notes">
         <strong>Instrucciones:</strong> 
-        • <strong>1 clic:</strong> Alterna entre Aprobada y Sin cursar (si está cursando y recibe 1 clic, pasa a Aprobada).<br>
-        • <strong>2 clics rápidos:</strong> Pasa directamente a Cursando sin importar en qué estado se encuentre.
+        • <strong>1 clic:</strong> Alterna entre Aprobada y Sin cursar.<br>
+        • <strong>2 clics rápidos:</strong> Pasa directamente a Cursando.<br>
+        • Las fechas de exámenes guardadas no se pierden aunque quites la materia de "Cursando".
     </div>
 
     <script>
-        // Control de pestañas
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -573,62 +561,64 @@
             }
         }
 
-        // Base de datos de materias
         const materiasData = [
-            { id: 245, nombre: "ÁLGEBRA", tramo: 1, req: [] },
-            { id: 241, nombre: "ANÁLISIS MATEMÁTICO 1", tramo: 1, req: [] },
-            { id: 242, nombre: "ECONOMÍA", tramo: 1, req: [] },
-            { id: 246, nombre: "HISTORIA ECON. Y SOC. GENERAL", tramo: 1, req: [] },
-            { id: 252, nombre: "ADMINISTRACIÓN GENERAL", tramo: 1, req: [] },
-            { id: 254, nombre: "SOCIOLOGÍA DE LAS ORGANIZACIONES", tramo: 1, req: [] },
+            { id: 245, nombre: "ÁLGEBRA", sub: "1er Tramo", seccion: 1, req: [] },
+            { id: 241, nombre: "ANÁLISIS MATEMÁTICO 1", sub: "1er Tramo", seccion: 1, req: [] },
+            { id: 242, nombre: "ECONOMÍA", sub: "1er Tramo", seccion: 1, req: [] },
+            { id: 246, nombre: "HISTORIA ECON. Y SOCIAL GENERAL", sub: "1er Tramo", seccion: 1, req: [] },
+            { id: 252, nombre: "ADMINISTRACIÓN GENERAL", sub: "1er Tramo", seccion: 1, req: [] },
+            { id: 254, nombre: "SOCIOLOGÍA DE LAS ORGANIZACIONES", sub: "1er Tramo", seccion: 1, req: [] },
 
-            { id: 248, nombre: "ESTADÍSTICA 1", tramo: 2, req: [245, 241, 242, 246, 252, 254] },
-            { id: 247, nombre: "TEORÍA CONTABLE", tramo: 2, req: [245, 241, 242, 246, 252, 254] },
-            { id: 250, nombre: "MICROECONOMÍA 1", tramo: 2, req: [245, 241, 242, 246, 252, 254] },
-            { id: 463, nombre: "GESTIÓN DE TEC. DIGITALES", tramo: 2, req: [245, 241, 242, 246, 252, 254] },
-            { id: 274, nombre: "SISTEMAS ADMINISTRATIVOS", tramo: 2, req: [245, 241, 242, 246, 252, 254] },
-            { id: 462, nombre: "DERECHO EMPRESARIAL", tramo: 2, req: [245, 241, 242, 246, 252, 254] },
+            { id: 248, nombre: "ESTADÍSTICA 1", sub: "2do Tramo", seccion: 2, req: [245, 241, 242, 246, 252, 254] },
+            { id: 247, nombre: "TEORÍA CONTABLE", sub: "2do Tramo", seccion: 2, req: [245, 241, 242, 246, 252, 254] },
+            { id: 250, nombre: "MICROECONOMÍA 1", sub: "2do Tramo", seccion: 2, req: [245, 241, 242, 246, 252, 254] },
+            { id: 463, nombre: "GESTIÓN DE TEC. DIGITALES", sub: "2do Tramo", seccion: 2, req: [245, 241, 242, 246, 252, 254] },
+            { id: 274, nombre: "SISTEMAS ADMINISTRATIVOS", sub: "2do Tramo", seccion: 2, req: [245, 241, 242, 246, 252, 254] },
+            { id: 462, nombre: "DERECHO EMPRESARIAL", sub: "2do Tramo", seccion: 2, req: [245, 241, 242, 246, 252, 254] },
 
-            { id: 276, nombre: "CÁLCULO FINANCIERO", tramo: 2, req: [248, 247, 241, 245] },
-            { id: 464, nombre: "GESTIÓN DE COSTOS", tramo: 2, req: [247, 250] },
-            { id: 278, nombre: "MACROECON. Y POLÍTICA ECON.", tramo: 2, req: [250, 242] },
-            { id: 467, nombre: "GESTIÓN DEL TALENTO", tramo: 2, req: [252] },
-            { id: 466, nombre: "ADMINISTRACIÓN DE OPERACIONES", tramo: 2, req: [252, 248] },
-            
-            { id: 465, nombre: "MÉTODO PREDICTIVOS P/ LA GESTIÓN", tramo: 2, req: [276, 248] },
-            { id: 468, nombre: "ADMINISTRACIÓN TRIBUTARIA", tramo: 2, req: [278, 247] },
-            { id: 279, nombre: "ADMINISTRACIÓN FINANCIERA", tramo: 2, req: [247, 276] },
-            { id: 469, nombre: "MARKETING", tramo: 2, req: [466, 250] },
+            { id: 276, nombre: "CÁLCULO FINANCIERO", sub: "Correlativa: 248", seccion: 2, req: [248] },
+            { id: 464, nombre: "GESTIÓN DE COSTOS", sub: "Correlativa: 247", seccion: 2, req: [247] },
+            { id: 278, nombre: "MACROECON. Y POLÍTICA ECON.", sub: "Correlativa: 250", seccion: 2, req: [250] },
+            { id: 467, nombre: "GESTIÓN DEL TALENTO", sub: "Correlativa: 274", seccion: 2, req: [274] },
+            { id: 466, nombre: "ADMINIST. DE OPERACIONES", sub: "Correlativa: 274", seccion: 2, req: [274] },
 
-            { id: 470, nombre: "CIENCIAS DE LA DECISIÓN", tramo: 2, req: [465] },
-            { id: 471, nombre: "PLANEAMIENTO ESTRATÉGICO", tramo: 2, req: [279] },
+            { id: 465, nombre: "MÉTODOS PREDICTIVOS P/ LA GESTIÓN", sub: "Correlativa: 276", seccion: 2, req: [276] },
+            { id: 468, nombre: "ADMINIST. TRIBUTARIA", sub: "Correlativas: 464, 278", seccion: 2, req: [464, 278] },
+            { id: 279, nombre: "ADMINIST. FINANCIERA", sub: "Correlativas: 276, 464", seccion: 2, req: [276, 464] },
+            { id: 469, nombre: "MARKETING", sub: "Correlativa: 466", seccion: 2, req: [466] },
 
-            { id: 472, nombre: "DIRECCIÓN", tramo: 2, req: [471, 469] },
-            { id: 473, nombre: "PRÁCTICA PROFESIONAL", tramo: 2, req: [] },
-            
-            { id: 901, nombre: "OPTATIVA I (ORIENTADA)", tramo: 2, req: [] },
-            { id: 902, nombre: "OPTATIVA II (ORIENTADA)", tramo: 2, req: [] },
-            { id: 903, nombre: "OPTATIVA III (COMPETENCIA)", tramo: 2, req: [] }
+            { id: 470, nombre: "CIENCIAS DE LA DECISIÓN", sub: "Correlativa: 465", seccion: 'final', req: [465] },
+            { id: 471, nombre: "PLANEAMIENTO ESTRATÉGICO", sub: "Correlativas: 279, 467", seccion: 'final', req: [279, 467] },
+
+            { id: 981, nombre: "OPTATIVA I (ORIENTADA)", sub: "Electiva", seccion: 'final', req: [] },
+            { id: 982, nombre: "OPTATIVA II (ORIENTADA)", sub: "Electiva", seccion: 'final', req: [] },
+            { id: 983, nombre: "OPTATIVA III (COMPETENCIA)", sub: "Electiva", seccion: 'final', req: [] },
+            { id: 473, nombre: "PRÁCTICA PROFESIONAL", sub: "Últimas 5 materias", seccion: 'final', req: [] },
+            { id: 472, nombre: "DIRECCIÓN", sub: "Materia Final", seccion: 'final', req: [] }
         ];
 
-        // Memoria por dispositivo
-        let approvedIds = JSON.parse(localStorage.getItem('admin_approved_device')) || [];
-        let cursandoIds = JSON.parse(localStorage.getItem('admin_cursando_device')) || [];
-        let examenesData = JSON.parse(localStorage.getItem('admin_examenes_device')) || {};
+        let approvedIds = JSON.parse(localStorage.getItem('lic_admin_approved_v2')) || [];
+        let cursandoIds = JSON.parse(localStorage.getItem('lic_admin_cursando_v2')) || [];
+        let examenesData = JSON.parse(localStorage.getItem('lic_admin_examenes_v2')) || {};
 
         let clickTimer = null;
 
         function renderPlan() {
-            const container1 = document.getElementById('tramo-1');
-            const container2 = document.getElementById('tramo-2');
-            container1.innerHTML = '';
-            container2.innerHTML = '';
+            const containers = {
+                1: document.getElementById('tramo-1'),
+                2: document.getElementById('tramo-2'),
+                final: document.getElementById('tramo-final')
+            };
+
+            Object.values(containers).forEach(c => { if(c) c.innerHTML = ''; });
 
             let approvedCount = 0;
             let cursandoCount = cursandoIds.length;
             let availableCount = 0;
             const totalMaterias = materiasData.length;
-            const primerTramoCompleto = [245, 241, 242, 246, 252, 254].every(id => approvedIds.includes(id));
+
+            const tramo1Ids = materiasData.filter(m => m.seccion === 1).map(m => m.id);
+            const tramo1Completo = tramo1Ids.every(id => approvedIds.includes(id));
 
             materiasData.forEach(mat => {
                 const isApproved = approvedIds.includes(mat.id);
@@ -638,16 +628,13 @@
                 if (isApproved) {
                     approvedCount++;
                 } else {
-                    if (mat.id === 473) {
-                        isAvailable = approvedIds.length >= (totalMaterias - 5);
-                    } else if (mat.tramo === 2 && mat.req.length === 6 && mat.req.includes(252)) {
-                        isAvailable = primerTramoCompleto;
+                    if (mat.seccion === 2 && mat.req.length === 6 && mat.req.includes(245)) {
+                        isAvailable = tramo1Completo;
                     } else if (mat.req.length === 0) {
                         isAvailable = true;
                     } else {
                         isAvailable = mat.req.every(reqId => approvedIds.includes(reqId));
                     }
-
                     if (isAvailable && !isCursando) availableCount++;
                 }
 
@@ -660,6 +647,7 @@
 
                 div.innerHTML = `
                     <div class="nombre">${mat.nombre}</div>
+                    <div class="sub">${mat.sub}</div>
                     <div class="codigo">${mat.id}</div>
                 `;
 
@@ -678,8 +666,8 @@
                     }
                 };
 
-                if (mat.tramo === 1) container1.appendChild(div);
-                else container2.appendChild(div);
+                let targetContainer = containers[mat.seccion] || containers['final'];
+                targetContainer.appendChild(div);
             });
 
             const missingCount = totalMaterias - approvedCount;
@@ -694,8 +682,8 @@
             progressBar.style.width = percentage + '%';
             document.getElementById('progress-text').innerText = percentage + '% Completado (' + approvedCount + '/' + totalMaterias + ')';
 
-            localStorage.setItem('admin_approved_device', JSON.stringify(approvedIds));
-            localStorage.setItem('admin_cursando_device', JSON.stringify(cursandoIds));
+            localStorage.setItem('lic_admin_approved_v2', JSON.stringify(approvedIds));
+            localStorage.setItem('lic_admin_cursando_v2', JSON.stringify(cursandoIds));
         }
 
         function handleMateriaAction(id, tipo) {
@@ -717,12 +705,10 @@
                     }
                 } else {
                     cursandoIds = cursandoIds.filter(item => item !== id);
-                    delete examenesData[id];
                 }
             } else {
                 if (isCursando) {
                     cursandoIds = cursandoIds.filter(item => item !== id);
-                    delete examenesData[id];
                     if (!approvedIds.includes(id)) approvedIds.push(id);
                 } else if (isApproved) {
                     approvedIds = approvedIds.filter(item => item !== id);
@@ -732,28 +718,39 @@
             }
 
             renderPlan();
-            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
+            localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
         }
 
         function resetProgress() {
-            if (confirm('¿Estás seguro de reiniciar todo tu progreso y materias en curso en este dispositivo?')) {
+            if (confirm('¿Estás seguro de reiniciar tu progreso académico?')) {
                 approvedIds = [];
                 cursandoIds = [];
-                examenesData = {};
-                localStorage.removeItem('admin_approved_device');
-                localStorage.removeItem('admin_cursando_device');
-                localStorage.removeItem('admin_examenes_device');
+                localStorage.removeItem('lic_admin_approved_v2');
+                localStorage.removeItem('lic_admin_cursando_v2');
                 renderPlan();
             }
         }
 
-        // Renderizado del Cronograma de Exámenes Automático
         function renderCronograma() {
             const containerForm = document.getElementById('lista-materias-cronograma');
             containerForm.innerHTML = '';
 
-            if (cursandoIds.length === 0) {
-                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0; font-size: 0.85rem;">No tienes materias en curso. Haz doble clic en el plan de estudios.</p>';
+            const idsConFechasOActive = new Set([...cursandoIds]);
+            Object.keys(examenesData).forEach(idStr => {
+                const id = Number(idStr);
+                const d = examenesData[id];
+                if (d && d.fechas) {
+                    const tieneAlguna = Object.values(d.fechas).some(val => val !== '');
+                    if (tieneAlguna) {
+                        idsConFechasOActive.add(id);
+                    }
+                }
+            });
+
+            const listaIds = Array.from(idsConFechasOActive);
+
+            if (listaIds.length === 0) {
+                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0; font-size: 0.85rem;">No hay materias en curso ni con fechas cargadas. Marca materias como Cursando en el plan.</p>';
                 document.getElementById('proximo-examen-banner').style.display = 'none';
                 document.getElementById('timeline-lista').innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía.</p>';
                 return;
@@ -761,7 +758,7 @@
 
             let todasLasFechas = [];
 
-            cursandoIds.forEach(id => {
+            listaIds.forEach(id => {
                 const mat = materiasData.find(m => m.id === id);
                 if (!mat) return;
 
@@ -792,13 +789,14 @@
                 if (regFechas.recu) todasLasFechas.push({ fecha: regFechas.recu, etiqueta: 'Recuperatorio', materia: mat.nombre });
                 if (!data.noFinal && regFechas.final) todasLasFechas.push({ fecha: regFechas.final, etiqueta: 'Examen Final', materia: mat.nombre });
 
-                // Tarjeta de carga en el panel derecho
                 const card = document.createElement('div');
                 card.className = 'materia-cronograma-card';
+                const isCurrentlyCursando = cursandoIds.includes(mat.id);
+
                 card.innerHTML = `
                     <h3>
-                        <span>📚 ${mat.nombre}</span>
-                        <button style="font-size: 0.7rem; background: #dc3545; color: white; border: none; padding: 3px 6px; border-radius: 4px; cursor: pointer;" onclick="handleMateriaAction(${mat.id}, 'cursando'); renderCronograma();">Quitar</button>
+                        <span>📚 ${mat.nombre} ${!isCurrentlyCursando ? '<span style="font-size:0.65rem; background:#eee; padding:2px 4px; border-radius:3px; color:#666;">(Guardada)</span>' : ''}</span>
+                        <button style="font-size: 0.7rem; background: #6c757d; color: white; border: none; padding: 3px 6px; border-radius: 4px; cursor: pointer;" onclick="borrarFechasMateria(${mat.id})">Limpiar Fechas</button>
                     </h3>
 
                     <div class="exam-row">
@@ -846,10 +844,8 @@
                 containerForm.appendChild(card);
             });
 
-            // Ordenar cronológicamente
             todasLasFechas.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
 
-            // Renderizar Línea de Tiempo en la columna izquierda
             const timelineContainer = document.getElementById('timeline-lista');
             timelineContainer.innerHTML = '';
             if (todasLasFechas.length === 0) {
@@ -867,32 +863,22 @@
                 });
             }
 
-            // Próximo(s) examen(es)
             const hoyStr = new Date().toISOString().split('T')[0];
             const futuras = todasLasFechas.filter(item => item.fecha >= hoyStr);
 
             const banner = document.getElementById('proximo-examen-banner');
-            const bannerContenido = document.getElementById('proximo-examen-contenido');
+            const listaUl = document.getElementById('proximo-examen-lista-ul');
+            listaUl.innerHTML = '';
 
             if (futuras.length === 0) {
                 banner.style.display = 'none';
             } else {
                 banner.style.display = 'block';
-                const primeraFecha = futuras[0].fecha;
-                const d1 = new Date(primeraFecha);
-                const limiteSemana = new Date(d1);
-                limiteSemana.setDate(d1.getDate() + 6);
-
-                const examenesEnLaSemana = futuras.filter(item => {
-                    const f = new Date(item.fecha);
-                    return f >= d1 && f <= limiteSemana;
+                futuras.forEach(ex => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `- ${ex.materia} - ${formatearFechaLegible(ex.fecha)}`;
+                    listaUl.appendChild(li);
                 });
-
-                let htmlProximos = '';
-                examenesEnLaSemana.forEach(ex => {
-                    htmlProximos += `<div>• ${ex.materia} (${ex.etiqueta}) — <strong>${formatearFechaLegible(ex.fecha)}</strong></div>`;
-                });
-                bannerContenido.innerHTML = htmlProximos;
             }
         }
 
@@ -904,9 +890,16 @@
         }
 
         function actualizarFecha(materiaId, campo, valor) {
-            if (!examenesData[materiaId]) return;
+            if (!examenesData[materiaId]) {
+                examenesData[materiaId] = {
+                    splitParcial1: false,
+                    splitParcial2: false,
+                    noFinal: false,
+                    fechas: { p1_unico: '', p1_prac: '', p1_teor: '', p2_unico: '', p2_prac: '', p2_teor: '', recu: '', final: '' }
+                };
+            }
             examenesData[materiaId].fechas[campo] = valor;
-            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
+            localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
             renderCronograma();
         }
 
@@ -914,18 +907,33 @@
             if (!examenesData[materiaId]) return;
             if (parcialNum === 1) examenesData[materiaId].splitParcial1 = isChecked;
             if (parcialNum === 2) examenesData[materiaId].splitParcial2 = isChecked;
-            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
+            localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
             renderCronograma();
         }
 
+        formatNoFinal = (materiaId, isChecked) => {
+            if (!examenesData[materiaId]) return;
+            examenesData[materiaId].noFinal = isChecked;
+            localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
+            renderCronograma();
+        }
         function toggleNoFinal(materiaId, isChecked) {
             if (!examenesData[materiaId]) return;
             examenesData[materiaId].noFinal = isChecked;
-            localStorage.setItem('admin_examenes_device', JSON.stringify(examenesData));
+            localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
             renderCronograma();
         }
 
-        // Inicializar vistas
+        function borrarFechasMateria(materiaId) {
+            if (confirm('¿Deseas limpiar todas las fechas agendadas para esta materia?')) {
+                if (examenesData[materiaId]) {
+                    delete examenesData[materiaId];
+                    localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
+                    renderCronograma();
+                }
+            }
+        }
+
         renderPlan();
     </script>
 </body>
