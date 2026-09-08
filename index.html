@@ -195,7 +195,6 @@
             flex-direction: column;
             justify-content: space-between;
             
-            /* Altura fija estricta para evitar desplazamientos */
             height: 90px;
             box-sizing: border-box;
             
@@ -539,7 +538,7 @@
                 <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.05rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗓️ Próximos Exámenes</h2>
                 
                 <div id="proximo-examen-banner" class="proximo-examen-banner" style="display: none;">
-                    <h3>Proximos parciales</h3>
+                    <h3>Proximos parciales (próximas 2 semanas)</h3>
                     <ul id="proximo-examen-lista-ul"></ul>
                 </div>
 
@@ -875,18 +874,27 @@
                 });
             }
 
-            const hoyStr = new Date().toISOString().split('T')[0];
-            const futuras = todasLasFechas.filter(item => item.fecha >= hoyStr);
+            // --- FILTRO DE PRÓXIMAS 2 SEMANAS (14 DÍAS) ---
+            const hoy = new Date();
+            hoy.setHours(0, 0, 0, 0);
+
+            const limite2Semanas = new Date(hoy);
+            limite2Semanas.setDate(limite2Semanas.getDate() + 14);
+
+            const proximo2Semanas = todasLasFechas.filter(item => {
+                const fechaExam = new Date(item.fecha + 'T00:00:00');
+                return fechaExam >= hoy && fechaExam <= limite2Semanas;
+            });
 
             const banner = document.getElementById('proximo-examen-banner');
             const listaUl = document.getElementById('proximo-examen-lista-ul');
             listaUl.innerHTML = '';
 
-            if (futuras.length === 0) {
+            if (proximo2Semanas.length === 0) {
                 banner.style.display = 'none';
             } else {
                 banner.style.display = 'block';
-                futuras.forEach(ex => {
+                proximo2Semanas.forEach(ex => {
                     const li = document.createElement('li');
                     li.innerText = `- ${ex.materia}  - ${formatearFechaLegible(ex.fecha)}`;
                     listaUl.appendChild(li);
