@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Licenciatura en Administración - Mi Carrera</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/graduation-cap.png">
     <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/graduation-cap.png">
@@ -15,23 +15,27 @@
             --card-bg: #ffffff;
             --text-main: #333333;
             
-            /* Paleta en tonos pastel suaves y bajo contraste */
-            --approved-bg: #d1e7dd;      /* Verde clarito */
-            --approved-text: #0f5132;    /* Texto verde oscuro */
-            --cursando-bg: #fff3cd;      /* Amarillo pastel suave */
-            --cursando-text: #664d03;    /* Texto marrón suave */
-            --available-bg: #e7f1ff;     /* Celeste pastel */
-            --available-text: #084298;   /* Texto azul suave */
-            --locked-bg: #e9ecef;        /* Gris claro para bloqueadas */
-            --locked-text: #adb5bd;      /* Texto gris suave */
+            --approved-bg: #d1e7dd;
+            --approved-text: #0f5132;
+            --cursando-bg: #fff3cd;
+            --cursando-text: #664d03;
+            --available-bg: #e7f1ff;
+            --available-text: #084298;
+            --locked-bg: #e9ecef;
+            --locked-text: #adb5bd;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 15px 10px;
             user-select: none;
         }
 
@@ -42,31 +46,37 @@
 
         h1 {
             color: var(--primary);
-            margin-bottom: 5px;
+            margin: 0 0 5px 0;
+            font-size: 1.5rem;
         }
 
         .tabs {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .tab-btn {
             background: #e2e3e5;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 10px 18px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
             color: #555;
-            transition: all 0.2s;
+            font-size: 0.9rem;
+            transition: transform 0.12s ease-out, background-color 0.2s ease;
+        }
+
+        .tab-btn:active {
+            transform: scale(0.92);
         }
 
         .tab-btn.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(201, 0, 53, 0.25);
         }
 
         .tab-content {
@@ -75,16 +85,22 @@
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .progress-container {
             max-width: 600px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
             background: #e0e0e0;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            height: 25px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            height: 22px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
             position: relative;
         }
 
@@ -92,16 +108,16 @@
             height: 100%;
             background: linear-gradient(90deg, #198754, #20c997);
             width: 0%;
-            transition: width 0.4s ease;
+            transition: width 0.4s ease-in-out;
         }
 
         .progress-text {
             position: absolute;
             width: 100%;
             text-align: center;
-            top: 3px;
+            top: 2px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #333;
             text-shadow: 0 0 2px #fff;
         }
@@ -109,25 +125,25 @@
         .stats {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
         .stat-box {
             background: white;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--primary);
-            font-size: 0.95rem;
+            border-left: 3px solid var(--primary);
+            font-size: 0.85rem;
         }
 
         .legend {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 10px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
@@ -135,13 +151,13 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 600;
         }
 
         .color-dot {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border-radius: 4px;
         }
 
@@ -149,41 +165,47 @@
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             border-radius: 6px;
-            margin: 30px auto 20px auto;
+            margin: 20px auto 12px auto;
             max-width: 1200px;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            font-weight: bold;
         }
 
+        /* GRILLA Y TARJETAS ESTABILIZADAS */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
             max-width: 1200px;
             margin: 0 auto;
+            contain: layout;
         }
 
         .materia {
             background-color: var(--card-bg);
             border: 2px solid #ccc;
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 8px 6px;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 85px;
-            position: relative;
-            overflow: hidden;
+            
+            /* Altura fija estricta para evitar desplazamientos */
+            height: 90px;
+            box-sizing: border-box;
+            
+            will-change: transform;
+            transition: transform 0.12s ease-out, background-color 0.15s ease, border-color 0.15s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
         .materia:active {
-            transform: scale(0.95);
+            transform: scale(0.94);
         }
 
         .materia .codigo {
@@ -192,28 +214,32 @@
             padding: 2px 4px;
             border-radius: 4px;
             align-self: center;
-            margin-top: 4px;
             color: inherit;
         }
 
         .materia .nombre {
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             line-height: 1.1;
             color: #9e0029;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .materia .sub {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             color: #555;
-            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Estilos aplicados por estado */
         .materia.locked {
             background-color: var(--locked-bg);
             border-color: #dee2e6;
-            opacity: 0.7;
+            opacity: 0.6;
             cursor: not-allowed;
         }
         .materia.locked .nombre, .materia.locked .sub, .materia.locked .codigo { 
@@ -253,20 +279,17 @@
         .materia.approved .nombre {
             text-decoration: line-through;
         }
-        .materia.approved .codigo {
-            background: rgba(15, 81, 50, 0.08);
-        }
 
         .cronograma-layout {
             max-width: 1250px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 15px;
             align-items: start;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 800px) {
             .cronograma-layout {
                 grid-template-columns: 1fr;
             }
@@ -274,25 +297,24 @@
 
         .cronograma-pane {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
         .materia-cronograma-card {
             background: #fff8f8;
             border: 1px solid #fcd2e1;
-            border-left: 6px solid var(--primary);
-            padding: 12px;
+            border-left: 5px solid var(--primary);
+            padding: 10px;
             border-radius: 8px;
-            margin-bottom: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            margin-bottom: 10px;
         }
 
         .materia-cronograma-card h3 {
             margin: 0 0 8px 0;
             color: var(--primary-dark);
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -303,7 +325,6 @@
             gap: 8px;
             align-items: center;
             margin-bottom: 6px;
-            flex-wrap: wrap;
             background: white;
             padding: 6px 8px;
             border-radius: 6px;
@@ -311,29 +332,28 @@
         }
 
         .exam-row label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: bold;
             color: #444;
-            min-width: 110px;
             flex: 1;
         }
 
         .exam-row input[type="date"] {
-            padding: 4px 6px;
+            padding: 4px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+            font-family: inherit;
         }
 
         .options-bar {
             display: flex;
             gap: 10px;
-            margin-top: 8px;
-            font-size: 0.78rem;
+            margin-top: 6px;
+            font-size: 0.75rem;
             align-items: center;
-            flex-wrap: wrap;
             background: #f9f9f9;
-            padding: 6px;
+            padding: 5px;
             border-radius: 5px;
         }
 
@@ -341,7 +361,7 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             font-weight: 600;
             color: #555;
         }
@@ -349,26 +369,25 @@
         .proximo-examen-banner {
             background: #fff3cd;
             border: 1px solid #ffeeba;
-            border-left: 6px solid #ffc107;
-            padding: 15px;
+            border-left: 5px solid #ffc107;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
         }
 
         .proximo-examen-banner h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
             color: #856404;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
         }
 
         .proximo-examen-banner ul {
             margin: 0;
-            padding-left: 18px;
-            font-size: 0.9rem;
+            padding: 0;
+            list-style: none;
+            font-size: 0.85rem;
             color: #533f04;
-            line-height: 1.5;
         }
 
         .proximo-examen-banner li {
@@ -377,14 +396,14 @@
 
         .timeline-container {
             position: relative;
-            padding-left: 25px;
-            margin-top: 15px;
+            padding-left: 20px;
+            margin-top: 10px;
         }
 
         .timeline-container::before {
             content: '';
             position: absolute;
-            left: 7px;
+            left: 5px;
             top: 5px;
             bottom: 5px;
             width: 3px;
@@ -394,61 +413,61 @@
 
         .timeline-node {
             position: relative;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             background: #fff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            padding: 12px 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            padding: 10px 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
         .timeline-node::before {
             content: '';
             position: absolute;
-            left: -25px;
-            top: 15px;
-            width: 11px;
-            height: 11px;
+            left: -20px;
+            top: 14px;
+            width: 9px;
+            height: 9px;
             background: white;
             border: 3px solid var(--primary);
             border-radius: 50%;
         }
 
         .timeline-date {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             color: var(--primary-dark);
             margin-bottom: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .timeline-title {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: var(--text-main);
         }
 
         .timeline-tag {
             display: inline-block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             background: #f1f3f5;
             color: #495057;
             padding: 2px 6px;
             border-radius: 4px;
-            margin-top: 5px;
+            margin-top: 4px;
             font-weight: 600;
         }
 
         .notes {
             max-width: 900px;
-            margin: 30px auto 10px auto;
+            margin: 20px auto 10px auto;
             background: #fff3cd;
             border: 1px solid #ffeeba;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 0.85rem;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
             color: #856404;
+            text-align: center;
         }
 
         .reset-btn {
@@ -458,27 +477,28 @@
             background-color: #dc3545;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            transition: transform 0.12s ease;
         }
 
-        .reset-btn:hover {
-            background-color: #bb2d3b;
+        .reset-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Licenciatura en Administración</h1>
-        <p>Panel de Control Académico y Cronograma</p>
+        <h1>Lic. en Administración</h1>
+        <p style="margin:2px 0 0 0; font-size:0.85rem; color:#666;">Panel Académico Móvil</p>
     </header>
 
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('plan')">Plan de Materias</button>
-        <button class="tab-btn" onclick="switchTab('cronograma')">Fechas de Parciales 📅</button>
+        <button class="tab-btn" onclick="switchTab('cronograma')">Parciales 📅</button>
     </div>
 
     <div id="tab-plan" class="tab-content active">
@@ -504,10 +524,10 @@
         <div class="section-title">PRIMER TRAMO</div>
         <div class="grid-container" id="tramo-1"></div>
 
-        <div class="section-title">SEGUNDO TRAMO (Requisito: 1er Tramo Completo)</div>
+        <div class="section-title">SEGUNDO TRAMO</div>
         <div class="grid-container" id="tramo-2"></div>
 
-        <div class="section-title">MATERIAS FINALES Y ORIENTACIONES</div>
+        <div class="section-title">FINALES Y ORIENTACIONES</div>
         <div class="grid-container" id="tramo-final"></div>
 
         <button class="reset-btn" onclick="resetProgress()">Reiniciar Progreso</button>
@@ -516,7 +536,7 @@
     <div id="tab-cronograma" class="tab-content">
         <div class="cronograma-layout">
             <div class="cronograma-pane">
-                <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗓️ Línea de Tiempo de Exámenes</h2>
+                <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.05rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗓️ Próximos Exámenes</h2>
                 
                 <div id="proximo-examen-banner" class="proximo-examen-banner" style="display: none;">
                     <h3>Proximos parciales</h3>
@@ -524,26 +544,19 @@
                 </div>
 
                 <div id="timeline-lista" class="timeline-container">
-                    <p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía. Carga las fechas a la derecha.</p>
+                    <p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas.</p>
                 </div>
             </div>
 
             <div class="cronograma-pane" style="background: #fffcfd;">
-                <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">✍️ Cargar Fechas</h2>
-                <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">
-                    Aquí figuran las materias que marcaste como cursando o aquellas que tienen fechas agendadas guardadas de forma segura.
-                </p>
-                
+                <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.05rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">✍️ Cargar Fechas</h2>
                 <div id="lista-materias-cronograma"></div>
             </div>
         </div>
     </div>
 
     <div class="notes">
-        <strong>Instrucciones:</strong> 
-        • <strong>1 clic:</strong> Alterna entre Aprobada y Sin cursar.<br>
-        • <strong>2 clics rápidos:</strong> Pasa directamente a Cursando.<br>
-        • Las fechas de exámenes guardadas no se pierden aunque quites la materia de "Cursando".
+        💡 <strong>1 toque:</strong> Aprobada / Quitar • <strong>2 toques rápidos:</strong> Cursando
     </div>
 
     <script>
@@ -580,7 +593,7 @@
             { id: 464, nombre: "GESTIÓN DE COSTOS", sub: "Correlativa: 247", seccion: 2, req: [247] },
             { id: 278, nombre: "MACROECON. Y POLÍTICA ECON.", sub: "Correlativa: 250", seccion: 2, req: [250] },
             { id: 467, nombre: "GESTIÓN DEL TALENTO", sub: "Correlativa: 274", seccion: 2, req: [274] },
-            { id: 466, nombre: "ADMINIST. DE OPERACIONES", sub: "Correlativa: 274", seccion: 2, req: [274] },
+            { id: 466, nombre: "Admin. de Operaciones", sub: "Correlativa: 274", seccion: 2, req: [274] },
 
             { id: 465, nombre: "MÉTODOS PREDICTIVOS P/ LA GESTIÓN", sub: "Correlativa: 276", seccion: 2, req: [276] },
             { id: 468, nombre: "ADMINIST. TRIBUTARIA", sub: "Correlativas: 464, 278", seccion: 2, req: [464, 278] },
@@ -662,7 +675,7 @@
                         clickTimer = setTimeout(() => {
                             clickTimer = null;
                             handleMateriaAction(mat.id, 'simple');
-                        }, 250);
+                        }, 220);
                     }
                 };
 
@@ -680,7 +693,7 @@
 
             const progressBar = document.getElementById('progress-bar');
             progressBar.style.width = percentage + '%';
-            document.getElementById('progress-text').innerText = percentage + '% Completado (' + approvedCount + '/' + totalMaterias + ')';
+            document.getElementById('progress-text').innerText = percentage + '% (' + approvedCount + '/' + totalMaterias + ')';
 
             localStorage.setItem('lic_admin_approved_v2', JSON.stringify(approvedIds));
             localStorage.setItem('lic_admin_cursando_v2', JSON.stringify(cursandoIds));
@@ -750,9 +763,9 @@
             const listaIds = Array.from(idsConFechasOActive);
 
             if (listaIds.length === 0) {
-                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 20px 0; font-size: 0.85rem;">No hay materias en curso ni con fechas cargadas. Marca materias como Cursando en el plan.</p>';
+                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 15px 0; font-size: 0.85rem;">No hay materias en curso. Marca materias como Cursando en el plan.</p>';
                 document.getElementById('proximo-examen-banner').style.display = 'none';
-                document.getElementById('timeline-lista').innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía.</p>';
+                document.getElementById('timeline-lista').innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 15px 0;">No hay fechas agendadas.</p>';
                 return;
             }
 
@@ -791,12 +804,11 @@
 
                 const card = document.createElement('div');
                 card.className = 'materia-cronograma-card';
-                const isCurrentlyCursando = cursandoIds.includes(mat.id);
 
                 card.innerHTML = `
                     <h3>
-                        <span>📚 ${mat.nombre} ${!isCurrentlyCursando ? '<span style="font-size:0.65rem; background:#eee; padding:2px 4px; border-radius:3px; color:#666;">(Guardada)</span>' : ''}</span>
-                        <button style="font-size: 0.7rem; background: #6c757d; color: white; border: none; padding: 3px 6px; border-radius: 4px; cursor: pointer;" onclick="borrarFechasMateria(${mat.id})">Limpiar Fechas</button>
+                        <span>📚 ${mat.nombre}</span>
+                        <button style="font-size: 0.68rem; background: #6c757d; color: white; border: none; padding: 2px 6px; border-radius: 4px; cursor: pointer;" onclick="borrarFechasMateria(${mat.id})">Limpiar</button>
                     </h3>
 
                     <div class="exam-row">
@@ -805,8 +817,8 @@
                             <input type="date" value="${data.fechas.p1_unico || ''}" onchange="actualizarFecha(${mat.id}, 'p1_unico', this.value)">
                         ` : `
                             <div style="display: flex; gap: 4px; flex: 2; flex-wrap: wrap;">
-                                <input type="date" title="Práctico" value="${data.fechas.p1_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p1_prac', this.value)" placeholder="Práctico">
-                                <input type="date" title="Teórico" value="${data.fechas.p1_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p1_teor', this.value)" placeholder="Teórico">
+                                <input type="date" value="${data.fechas.p1_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p1_prac', this.value)">
+                                <input type="date" value="${data.fechas.p1_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p1_teor', this.value)">
                             </div>
                         `}
                     </div>
@@ -817,8 +829,8 @@
                             <input type="date" value="${data.fechas.p2_unico || ''}" onchange="actualizarFecha(${mat.id}, 'p2_unico', this.value)">
                         ` : `
                             <div style="display: flex; gap: 4px; flex: 2; flex-wrap: wrap;">
-                                <input type="date" title="Práctico" value="${data.fechas.p2_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p2_prac', this.value)" placeholder="Práctico">
-                                <input type="date" title="Teórico" value="${data.fechas.p2_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p2_teor', this.value)" placeholder="Teórico">
+                                <input type="date" value="${data.fechas.p2_prac || ''}" onchange="actualizarFecha(${mat.id}, 'p2_prac', this.value)">
+                                <input type="date" value="${data.fechas.p2_teor || ''}" onchange="actualizarFecha(${mat.id}, 'p2_teor', this.value)">
                             </div>
                         `}
                     </div>
@@ -849,7 +861,7 @@
             const timelineContainer = document.getElementById('timeline-lista');
             timelineContainer.innerHTML = '';
             if (todasLasFechas.length === 0) {
-                timelineContainer.innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 20px 0;">No hay fechas agendadas todavía.</p>';
+                timelineContainer.innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 15px 0;">No hay fechas agendadas.</p>';
             } else {
                 todasLasFechas.forEach(item => {
                     const node = document.createElement('div');
@@ -876,7 +888,7 @@
                 banner.style.display = 'block';
                 futuras.forEach(ex => {
                     const li = document.createElement('li');
-                    li.innerHTML = `- ${ex.materia} - ${formatearFechaLegible(ex.fecha)}`;
+                    li.innerText = `- ${ex.materia}  - ${formatearFechaLegible(ex.fecha)}`;
                     listaUl.appendChild(li);
                 });
             }
@@ -911,12 +923,6 @@
             renderCronograma();
         }
 
-        formatNoFinal = (materiaId, isChecked) => {
-            if (!examenesData[materiaId]) return;
-            examenesData[materiaId].noFinal = isChecked;
-            localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
-            renderCronograma();
-        }
         function toggleNoFinal(materiaId, isChecked) {
             if (!examenesData[materiaId]) return;
             examenesData[materiaId].noFinal = isChecked;
@@ -925,7 +931,7 @@
         }
 
         function borrarFechasMateria(materiaId) {
-            if (confirm('¿Deseas limpiar todas las fechas agendadas para esta materia?')) {
+            if (confirm('¿Limpiar fechas?')) {
                 if (examenesData[materiaId]) {
                     delete examenesData[materiaId];
                     localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
