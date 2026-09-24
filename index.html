@@ -1146,7 +1146,13 @@
             gap: 10px;
         }
 
-        .print-modality-tag {
+        .print-virtual-footer {
+            display: none;
+        }
+
+        @media print {
+            @page {
+
             display: none;
         }
 
@@ -1256,6 +1262,9 @@
                 cursor: default !important;
                 padding: 4px 6px !important;
                 border-radius: 4px !important;
+                overflow: hidden !important;
+                justify-content: flex-start !important;
+                gap: 2px !important;
             }
 
             .h-block.is-materia {
@@ -1267,6 +1276,7 @@
             .h-block.is-virtual {
                 background: #faf5ff !important;
                 border-color: #9333ea !important;
+                border-left-color: #9333ea !important;
                 color: #581c87 !important;
             }
 
@@ -1280,21 +1290,14 @@
                 font-size: 0.72rem !important;
                 font-weight: 800 !important;
                 -webkit-line-clamp: 2 !important;
+                line-height: 1.15 !important;
+                margin-bottom: 2px !important;
             }
 
             .block-time-pill {
                 font-size: 0.65rem !important;
                 border: 1px solid rgba(0,0,0,0.15) !important;
-                margin: 2px 0 !important;
-            }
-
-            .print-modality-tag {
-                display: block !important;
-                font-size: 0.64rem !important;
-                font-weight: 800 !important;
-                margin-top: 1px !important;
-                text-transform: uppercase !important;
-                letter-spacing: 0.3px !important;
+                margin: 0 !important;
             }
 
             /* Listado de materias virtuales al pie de la impresión */
@@ -1445,7 +1448,7 @@
                 <div class="calendar-header-bar">
                     <div>
                         <h2>Semana de Cursada y Trabajo</h2>
-                        <span style="font-size: 0.75rem; color: #64748b;">Lunes a Viernes • 07:00 a 17:00 hs</span>
+                        <span style="font-size: 0.75rem; color: #64748b;">Lunes a Viernes • 07:00 a 17:00 hs &nbsp;|&nbsp; 🟦 Presencial &nbsp; 🟪 Virtual &nbsp; 🟧 Laburo</span>
                     </div>
                     <div style="display: flex; gap: 6px; align-items: center;">
                         <button class="btn-small" onclick="imprimirHorario()" style="background: #0284c7; color: white; border-color: #0284c7; display: flex; align-items: center; gap: 4px;" title="Imprimir solo la grilla limpia para pegar">
@@ -1846,10 +1849,6 @@
                         </button>
                     ` : '';
 
-                    const printModality = b.type === 'materia' 
-                        ? (b.isVirtual ? '💻 Modalidad: Virtual' : '🏫 Modalidad: Presencial')
-                        : '💼 Actividad Laboral';
-
                     blockEl.innerHTML = `
                         <div class="block-top">
                             <span class="block-title">${b.type === 'laburo' ? '💼 LABURO' : (b.isVirtual ? '💻 ' : '📚 ') + b.title}</span>
@@ -1859,7 +1858,6 @@
                             <span>⏱️ ${timeLabel}</span>
                             <span style="opacity: 0.7;">(${b.duration}h)</span>
                         </div>
-                        <div class="print-modality-tag">${printModality}</div>
                         <div class="block-tools">
                             ${modalityBtn}
                             <button class="h-block-btn" title="Achicar 1 hora" onclick="changeDuration('${b.id}', -1, event)">-1h</button>
