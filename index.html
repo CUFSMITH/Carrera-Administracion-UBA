@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Licenciatura en Administración - Mi Carrera</title>
+    <title>Licenciatura en Administración - Mi Carrera y Horarios</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/graduation-cap.png">
     <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/graduation-cap.png">
     
@@ -23,6 +23,21 @@
             --available-text: #084298;
             --locked-bg: #e9ecef;
             --locked-text: #adb5bd;
+
+            --materia-block-bg: #f0f9ff;
+            --materia-block-border: #38bdf8;
+            --materia-block-accent: #0284c7;
+            --materia-block-text: #0369a1;
+
+            --laburo-block-bg: #fff7ed;
+            --laburo-block-border: #fb923c;
+            --laburo-block-accent: #ea580c;
+            --laburo-block-text: #9a3412;
+
+            --virtual-block-bg: #f5f3ff;
+            --virtual-block-border: #c084fc;
+            --virtual-block-accent: #8b5cf6;
+            --virtual-block-text: #5b21b6;
         }
 
         * {
@@ -35,64 +50,64 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 0 10px 15px 10px;
+            padding: 0 10px 30px 10px;
             user-select: none;
         }
 
-        /* CABECERA INMOVIBLE / STICKY */
         .header-sticky {
             position: sticky;
             top: 0;
             background-color: var(--bg-color);
             z-index: 1000;
-            padding-top: 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         h1 {
             color: var(--primary);
-            margin: 0 0 5px 0;
-            font-size: 1.5rem;
+            margin: 0 0 3px 0;
+            font-size: 1.45rem;
         }
 
         .tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
             background: #e2e3e5;
             border: none;
-            padding: 10px 18px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
             color: #555;
-            font-size: 0.9rem;
-            transition: transform 0.12s ease-out, background-color 0.2s ease;
+            font-size: 0.88rem;
+            transition: transform 0.12s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .tab-btn:active {
-            transform: scale(0.92);
+            transform: scale(0.93);
         }
 
         .tab-btn.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 4px 10px rgba(201, 0, 53, 0.25);
+            box-shadow: 0 3px 8px rgba(201, 0, 53, 0.25);
         }
 
         .tab-content {
             display: none;
-            padding-top: 15px;
+            padding-top: 12px;
         }
 
         .tab-content.active {
@@ -105,9 +120,10 @@
             to { opacity: 1; }
         }
 
+        /* PROGRESS & STATS */
         .progress-container {
             max-width: 600px;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 12px auto;
             background: #e0e0e0;
             border-radius: 12px;
             overflow: hidden;
@@ -138,7 +154,7 @@
             display: flex;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
         }
 
@@ -148,14 +164,14 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border-left: 3px solid var(--primary);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
 
         .legend {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
         }
 
@@ -163,14 +179,14 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 600;
         }
 
         .color-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 4px;
+            width: 13px;
+            height: 13px;
+            border-radius: 3px;
         }
 
         .section-title {
@@ -179,14 +195,13 @@
             text-align: center;
             padding: 8px;
             border-radius: 6px;
-            margin: 20px auto 12px auto;
+            margin: 18px auto 10px auto;
             max-width: 1200px;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             letter-spacing: 0.5px;
             font-weight: bold;
         }
 
-        /* GRILLA Y TARJETAS ESTABILIZADAS */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -206,10 +221,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
             height: 90px;
             box-sizing: border-box;
-            
             will-change: transform;
             transition: transform 0.12s ease-out, background-color 0.15s ease, border-color 0.15s ease;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
@@ -230,8 +243,8 @@
 
         .materia .nombre {
             font-weight: 700;
-            font-size: 0.75rem;
-            line-height: 1.1;
+            font-size: 0.74rem;
+            line-height: 1.15;
             color: #9e0029;
             display: -webkit-box;
             -webkit-line-clamp: 3;
@@ -240,7 +253,7 @@
         }
 
         .materia .sub {
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             color: #555;
             white-space: nowrap;
             overflow: hidden;
@@ -289,6 +302,597 @@
         }
         .materia.approved .nombre {
             text-decoration: line-through;
+        }
+
+        .horarios-layout {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .horarios-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .horario-toolbox {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #efebeb;
+        }
+
+        .toolbox-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .active-brush-card {
+            background: #fdf2f4;
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .active-brush-card .brush-name {
+            font-weight: 800;
+            font-size: 0.88rem;
+            color: var(--primary-dark);
+            margin: 3px 0;
+        }
+
+        .laburo-card {
+            background: var(--laburo-block-bg);
+            border: 2px solid var(--laburo-block-border);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 4px rgba(251, 146, 60, 0.15);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .laburo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(251, 146, 60, 0.25);
+        }
+
+        .select-duration {
+            padding: 4px 6px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.78rem;
+            font-weight: 700;
+            background: white;
+            color: #9a3412;
+            cursor: pointer;
+        }
+
+        .search-materia-input {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .search-materia-input:focus {
+            border-color: var(--primary);
+        }
+
+        .palette-filters {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .palette-btn {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            transition: background 0.15s;
+        }
+
+        .palette-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .materias-palette-list {
+            max-height: 360px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-right: 4px;
+        }
+
+        .materias-palette-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .materias-palette-list::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 4px;
+        }
+
+        .palette-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--materia-block-border);
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: grab;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.12s ease;
+        }
+
+        .palette-item:hover {
+            border-color: var(--materia-block-accent);
+            background: #f0f9ff;
+            transform: translateX(2px);
+        }
+
+        .palette-item.is-selected {
+            background: #e0f2fe;
+            border-color: var(--materia-block-accent);
+            border-left-width: 6px;
+        }
+
+        .badge-2h {
+            font-size: 0.65rem;
+            background: #0284c7;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-left: 4px;
+        }
+
+        .horario-calendar-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #efebeb;
+            overflow: hidden;
+        }
+
+        .calendar-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .calendar-header-bar h2 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+        }
+
+        .conflict-badge {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-left: 4px solid #ef4444;
+            color: #b91c1c;
+            font-size: 0.75rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .conflict-badge.visible {
+            display: block;
+        }
+
+        .calendar-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .horario-table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            background: white;
+        }
+
+        .horario-table th {
+            background: #f8fafc;
+            color: #475569;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 9px 6px;
+            text-align: center;
+            border-bottom: 2px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            text-transform: uppercase;
+        }
+
+        .horario-table th.time-head {
+            width: 82px;
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .horario-table td {
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0;
+            height: 54px;
+            position: relative;
+            vertical-align: top;
+            background: #ffffff;
+            box-sizing: border-box;
+        }
+
+        .horario-table td.time-cell {
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-align: center;
+            border-right: 2px solid #e2e8f0;
+            user-select: none;
+            padding: 3px 2px;
+            vertical-align: middle;
+            height: 54px;
+            box-sizing: border-box;
+        }
+
+        .time-cell-inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 2px 0;
+        }
+
+        .time-cell-top {
+            font-size: 0.73rem;
+            font-weight: 800;
+            color: #1e293b;
+            line-height: 1;
+        }
+
+        .time-cell-divider {
+            font-size: 0.58rem;
+            color: #cbd5e1;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .time-cell-bottom {
+            font-size: 0.67rem;
+            font-weight: 700;
+            color: #64748b;
+            line-height: 1;
+        }
+
+        .horario-slot {
+            height: 54px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.12s ease;
+            box-sizing: border-box;
+        }
+
+        .horario-slot:hover {
+            background: #fbfcfe;
+        }
+
+        .horario-slot.drag-over {
+            background: #e0f2fe !important;
+            outline: 2px dashed #0284c7;
+        }
+
+        /* HORARIO BLOCKS */
+        .h-block {
+            position: absolute;
+            left: 2px;
+            right: 2px;
+            top: 2px;
+            border-radius: 7px;
+            padding: 4px 5px 6px 5px;
+            z-index: 10;
+            box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            cursor: grab;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 0.12s ease;
+            overflow: hidden;
+        }
+
+        .h-block:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .h-block.is-materia {
+            background: var(--materia-block-bg);
+            border: 1.5px solid var(--materia-block-border);
+            border-left: 4px solid var(--materia-block-accent);
+            color: var(--materia-block-text);
+        }
+
+        .h-block.is-laburo {
+            background: var(--laburo-block-bg);
+            border: 1.5px solid var(--laburo-block-border);
+            border-left: 4px solid var(--laburo-block-accent);
+            color: var(--laburo-block-text);
+        }
+
+        /* ESTILO PARA CLASES VIRTUALES */
+        .h-block.is-virtual {
+            background: var(--virtual-block-bg) !important;
+            border-color: var(--virtual-block-border) !important;
+            border-left-color: var(--virtual-block-accent) !important;
+            color: var(--virtual-block-text) !important;
+        }
+
+        .h-block.is-virtual .block-time-pill {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--virtual-block-accent);
+        }
+
+        /* BLOQUES UNIDOS PERFECTAMENTE SIN BACHES */
+        .h-block.joined-top {
+            top: 0px !important;
+            border-top: 1px dashed rgba(0, 0, 0, 0.2) !important;
+            border-top-left-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+        }
+
+        .h-block.joined-bottom {
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.2) !important;
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+        }
+
+        .h-block .block-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 4px;
+        }
+
+        .h-block .block-title {
+            font-size: 0.70rem;
+            font-weight: 800;
+            line-height: 1.15;
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: 2.3em;
+        }
+
+        .h-block .block-close {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 0 2px;
+            font-weight: bold;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .h-block .block-close:hover {
+            color: #dc2626;
+        }
+
+        .h-block .block-time {
+            font-size: 0.65rem;
+            font-weight: 700;
+            opacity: 0.9;
+            margin: 2px 0;
+        }
+
+        .block-time-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            background: rgba(255,255,255,0.85);
+            padding: 1px 4px;
+            border-radius: 4px;
+            width: fit-content;
+            margin: 1px 0;
+            white-space: nowrap;
+        }
+
+        .h-block .block-tools {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-top: 2px;
+            flex-wrap: nowrap;
+            overflow: hidden;
+        }
+
+        .h-block-btn {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.14);
+            border-radius: 3px;
+            font-size: 0.59rem;
+            padding: 1px 3px;
+            font-weight: 700;
+            cursor: pointer;
+            color: inherit;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .h-block-btn:hover {
+            background: #ffffff;
+        }
+
+        .h-block-btn.btn-mode {
+            font-size: 0.59rem;
+            font-weight: 800;
+            padding: 1px 4px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .h-block-btn.btn-mode.is-virtual {
+            background: #8b5cf6;
+            color: #ffffff;
+            border-color: #7c3aed;
+        }
+
+        .resizer-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 6px;
+            cursor: ns-resize;
+            background: repeating-linear-gradient(90deg, rgba(0,0,0,0.12), rgba(0,0,0,0.12) 3px, transparent 3px, transparent 6px);
+        }
+
+        .btn-small {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-small:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-small.danger {
+            color: #dc2626;
+            border-color: #fca5a5;
+        }
+
+        .btn-small.danger:hover {
+            background: #fee2e2;
+        }
+
+        /* PANEL LATERAL DE MATERIAS VIRTUALES ASINCRÓNICAS */
+        .virtual-section-card {
+            margin-top: 14px;
+            background: #faf5ff;
+            border: 1.5px solid #e9d5ff;
+            border-left: 4px solid #9333ea;
+            border-radius: 9px;
+            padding: 10px;
+        }
+
+        .virtual-section-title {
+            font-size: 0.77rem;
+            font-weight: 800;
+            color: #7e22ce;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .virtual-add-row {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 8px;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .virtual-select {
+            flex: 1;
+            min-width: 0;
+            width: 0;
+            padding: 5px 6px;
+            font-size: 0.73rem;
+            border: 1px solid #d8b4fe;
+            border-radius: 6px;
+            background: white;
+            color: #581c87;
+            outline: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .virtual-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .virtual-item {
+            background: white;
+            border: 1px solid #e9d5ff;
+            border-radius: 6px;
+            padding: 5px 7px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: #4c1d95;
+            box-shadow: 0 1px 2px rgba(147, 51, 234, 0.05);
         }
 
         .cronograma-layout {
@@ -401,10 +1005,6 @@
             color: #533f04;
         }
 
-        .proximo-examen-banner li {
-            margin-bottom: 4px;
-        }
-
         .timeline-container {
             position: relative;
             padding-left: 20px;
@@ -498,6 +1098,217 @@
         .reset-btn:active {
             transform: scale(0.95);
         }
+
+        /* MODAL DE CONFIRMACIÓN ELEGANTE (SIN ALERT/CONFIRM NATIVOS) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 360px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+        }
+
+        .modal-card p {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .print-modality-tag {
+            display: none;
+        }
+
+        .print-virtual-footer {
+            display: none;
+        }
+
+        @media print {
+            @page {
+                size: landscape;
+                margin: 6mm 10mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                color: #000000 !important;
+            }
+
+            /* Ocultar elementos irrelevantes para imprimir */
+            .header-sticky,
+            .tabs,
+            .notes,
+            .reset-btn,
+            .conflict-badge,
+            .horario-toolbox,
+            #tab-plan,
+            #tab-cronograma,
+            #custom-modal,
+            .calendar-header-bar button,
+            .h-block .block-tools,
+            .h-block .block-close,
+            .resizer-bottom {
+                display: none !important;
+            }
+
+            #tab-horarios {
+                display: block !important;
+                padding-top: 0 !important;
+            }
+
+            .horarios-layout {
+                display: block !important;
+                max-width: 100% !important;
+            }
+
+            .horario-calendar-card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+
+            .calendar-header-bar {
+                border-bottom: 2px solid #333 !important;
+                margin-bottom: 8px !important;
+                padding-bottom: 4px !important;
+            }
+
+            .calendar-header-bar h2 {
+                font-size: 1.25rem !important;
+                color: #000000 !important;
+            }
+
+            .calendar-wrapper {
+                border: 1.5px solid #64748b !important;
+                overflow: visible !important;
+            }
+
+            .horario-table {
+                min-width: 100% !important;
+                border-collapse: collapse !important;
+            }
+
+            .horario-table th {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+                font-size: 0.8rem !important;
+                border: 1px solid #94a3b8 !important;
+                padding: 5px !important;
+            }
+
+            .horario-table td {
+                border: 1px solid #cbd5e1 !important;
+                height: 48px !important;
+            }
+
+            .horario-table td.time-cell {
+                background: #f8fafc !important;
+                border-right: 2px solid #64748b !important;
+                height: 48px !important;
+            }
+
+            .horario-slot {
+                height: 48px !important;
+            }
+
+            /* Estilo simplificado y limpio del bloque en el papel */
+            .h-block {
+                box-shadow: none !important;
+                border-width: 1.5px !important;
+                cursor: default !important;
+                padding: 4px 6px !important;
+                border-radius: 4px !important;
+            }
+
+            .h-block.is-materia {
+                background: #f0f9ff !important;
+                border-color: #0284c7 !important;
+                color: #0c4a6e !important;
+            }
+
+            .h-block.is-virtual {
+                background: #faf5ff !important;
+                border-color: #9333ea !important;
+                color: #581c87 !important;
+            }
+
+            .h-block.is-laburo {
+                background: #fff7ed !important;
+                border-color: #ea580c !important;
+                color: #7c2d12 !important;
+            }
+
+            .h-block .block-title {
+                font-size: 0.72rem !important;
+                font-weight: 800 !important;
+                -webkit-line-clamp: 2 !important;
+            }
+
+            .block-time-pill {
+                font-size: 0.65rem !important;
+                border: 1px solid rgba(0,0,0,0.15) !important;
+                margin: 2px 0 !important;
+            }
+
+            .print-modality-tag {
+                display: block !important;
+                font-size: 0.64rem !important;
+                font-weight: 800 !important;
+                margin-top: 1px !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.3px !important;
+            }
+
+            /* Listado de materias virtuales al pie de la impresión */
+            .print-virtual-footer {
+                display: block !important;
+                margin-top: 12px !important;
+                padding: 6px 10px !important;
+                border: 1px dashed #7e22ce !important;
+                border-radius: 6px !important;
+                font-size: 0.75rem !important;
+                background: #faf5ff !important;
+                color: #581c87 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -510,10 +1321,12 @@
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('plan')">Plan de Materias</button>
+            <button class="tab-btn" onclick="switchTab('horarios')">Horarios ⏰</button>
             <button class="tab-btn" onclick="switchTab('cronograma')">Parciales 📅</button>
         </div>
     </div>
 
+    <!-- PESTAÑA 1: PLAN DE MATERIAS -->
     <div id="tab-plan" class="tab-content active">
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
@@ -543,16 +1356,143 @@
         <div class="section-title">FINALES Y ORIENTACIONES</div>
         <div class="grid-container" id="tramo-final"></div>
 
-        <button class="reset-btn" onclick="resetProgress()">Reiniciar Progreso</button>
+        <button class="reset-btn" onclick="promptResetProgress()">Reiniciar Progreso</button>
     </div>
 
+    <!-- PESTAÑA 2: HORARIOS -->
+    <div id="tab-horarios" class="tab-content">
+        <div class="horarios-layout">
+            <!-- PANEL LATERAL -->
+            <div class="horario-toolbox">
+                <div class="active-brush-card">
+                    <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: bold; color: #888;">Elemento Activo</div>
+                    <div class="brush-name" id="selected-brush-name">💼 LABURO (4 hs)</div>
+                    <div style="font-size: 0.7rem; color: #666;">Haz clic en la grilla para colocar o arrástralo</div>
+                </div>
+
+                <div class="toolbox-title">
+                    <span>Trabajo</span>
+                    <span style="font-size: 0.7rem; color: #9a3412;">Flexible</span>
+                </div>
+
+                <div class="laburo-card" draggable="true" ondragstart="handleLaburoDrag(event)">
+                    <div style="display: flex; align-items: center; gap: 6px;" onclick="selectBrush('laburo')">
+                        <span style="font-size: 1.25rem;">💼</span>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.85rem; color: #9a3412;">LABURO</div>
+                            <div style="font-size: 0.68rem; color: #c2410c;">Bloque laboral</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <select class="select-duration" id="laburo-hours-select" onchange="updateLaburoHours()">
+                            <option value="1">1 h</option>
+                            <option value="2">2 hs</option>
+                            <option value="3">3 hs</option>
+                            <option value="4" selected>4 hs</option>
+                            <option value="5">5 hs</option>
+                            <option value="6">6 hs</option>
+                            <option value="7">7 hs</option>
+                            <option value="8">8 hs</option>
+                        </select>
+                        <button class="btn-small" onclick="selectBrush('laburo')">Usar</button>
+                    </div>
+                </div>
+
+                <div class="toolbox-title">
+                    <span>Materias (2 hs)</span>
+                    <span style="font-size: 0.7rem; color: #0284c7;" id="palette-filter-title">Todas</span>
+                </div>
+
+                <input type="text" id="search-materia-input" class="search-materia-input" placeholder="🔍 Buscar materia o código..." oninput="filterPalette()">
+
+                <div class="palette-filters">
+                    <button class="palette-btn" onclick="setFilter('cursando')">Cursando</button>
+                    <button class="palette-btn" onclick="setFilter('disponibles')">Disponibles</button>
+                    <button class="palette-btn active" onclick="setFilter('todas')">Todas</button>
+                </div>
+
+                <div class="materias-palette-list" id="materias-palette-list"></div>
+
+                <!-- PANEL LATERAL: CURSADAS VIRTUALES ASINCRÓNICAS O A DISTANCIA -->
+                <div class="virtual-section-card">
+                    <div class="virtual-section-title">
+                        <span>💻 Cursadas Virtuales</span>
+                        <span style="font-size: 0.65rem; color: #9333ea; font-weight: 700;">Asincrónicas</span>
+                    </div>
+                    <div style="font-size: 0.69rem; color: #6b21a8; margin-bottom: 7px; line-height: 1.25;">
+                        Materias que cursás a distancia o en campus sin horario fijo semanal:
+                    </div>
+                    <div class="virtual-add-row">
+                        <select id="select-virtual-materia" class="virtual-select">
+                            <option value="">Seleccionar materia...</option>
+                        </select>
+                        <button class="btn-small" onclick="addVirtualMateria()" style="background:#9333ea; color:white; border-color:#7e22ce; padding: 4px 8px;">+ Agregar</button>
+                    </div>
+                    <div class="virtual-list" id="virtual-materias-list">
+                        <!-- Generado dinámicamente -->
+                    </div>
+                </div>
+
+                <div style="margin-top: 12px; font-size: 0.72rem; color: #64748b; line-height: 1.35; background: #f8fafc; padding: 8px; border-radius: 6px;">
+                    💡 <strong>Tips de Horario:</strong><br>
+                    • <strong>¿Día virtual?</strong> Hacé clic en el botón <strong>"🏫 Presencial"</strong> dentro de cualquier bloque para cambiarlo a <strong>"💻 Virtual"</strong> y diferenciarlo al instante.<br>
+                    • <strong>Unir bloques:</strong> Hacé clic en <strong>"🔗 Unir"</strong> para pegarlo al bloque anterior sin espacios ni solapamientos.
+                </div>
+            </div>
+
+            <!-- GRILLA SEMANAL -->
+            <div class="horario-calendar-card">
+                <div class="calendar-header-bar">
+                    <div>
+                        <h2>Semana de Cursada y Trabajo</h2>
+                        <span style="font-size: 0.75rem; color: #64748b;">Lunes a Viernes • 07:00 a 17:00 hs</span>
+                    </div>
+                    <div style="display: flex; gap: 6px; align-items: center;">
+                        <button class="btn-small" onclick="imprimirHorario()" style="background: #0284c7; color: white; border-color: #0284c7; display: flex; align-items: center; gap: 4px;" title="Imprimir solo la grilla limpia para pegar">
+                            <span>🖨️</span> <strong>Imprimir</strong>
+                        </button>
+                        <button class="btn-small danger" onclick="promptClearHorarios()">Vaciar 🗑️</button>
+                    </div>
+                </div>
+
+                <div id="horarios-conflict-alert" class="conflict-badge">
+                    ⚠️ <strong>Solapamiento detectado:</strong> Hay materias o laburo superpuestos a la misma hora.
+                </div>
+
+                <div class="calendar-wrapper">
+                    <table class="horario-table">
+                        <thead>
+                            <tr>
+                                <th class="time-head">Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="horario-tbody">
+                            <!-- Filas de 07:00 a 17:00 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="print-virtual-footer" class="print-virtual-footer">
+                    <strong>💻 Materias Virtuales Asincrónicas (sin horario fijo):</strong>
+                    <span id="print-virtual-list-text" style="font-weight: 600; margin-left: 5px;">Ninguna</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 3: PARCIALES Y CRONOGRAMA -->
     <div id="tab-cronograma" class="tab-content">
         <div class="cronograma-layout">
             <div class="cronograma-pane">
                 <h2 style="margin-top: 0; color: var(--primary-dark); font-size: 1.05rem; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗓️ Próximos Exámenes</h2>
                 
                 <div id="proximo-examen-banner" class="proximo-examen-banner" style="display: none;">
-                    <h3>Proximos parciales (próximas 2 semanas)</h3>
+                    <h3>Próximos parciales (próximas 2 semanas)</h3>
                     <ul id="proximo-examen-lista-ul"></ul>
                 </div>
 
@@ -569,7 +1509,19 @@
     </div>
 
     <div class="notes">
-        💡 <strong>1 toque:</strong> Aprobada / Quitar • <strong>2 toques rápidos:</strong> Cursando
+        💡 <strong>1 toque:</strong> Aprobada / Quitar • <strong>2 toques rápidos:</strong> Cursando | <strong>Horarios:</strong> Arrastrá materias o trabajo de 7 a 17 hs.
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN -->
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 id="modal-title">¿Estás seguro?</h3>
+            <p id="modal-desc">Esta acción no se puede deshacer.</p>
+            <div class="modal-actions">
+                <button class="btn-small" onclick="closeModal()">Cancelar</button>
+                <button class="btn-small danger" id="modal-confirm-btn">Confirmar</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -577,12 +1529,17 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             
-            if(tabName === 'plan') {
+            if (tabName === 'plan') {
                 document.getElementById('tab-plan').classList.add('active');
                 document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                renderPlan();
+            } else if (tabName === 'horarios') {
+                document.getElementById('tab-horarios').classList.add('active');
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                initHorarios();
             } else {
                 document.getElementById('tab-cronograma').classList.add('active');
-                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.querySelectorAll('.tab-btn')[2].classList.add('active');
                 renderCronograma();
             }
         }
@@ -627,6 +1584,24 @@
         let cursandoIds = JSON.parse(localStorage.getItem('lic_admin_cursando_v2')) || [];
         let examenesData = JSON.parse(localStorage.getItem('lic_admin_examenes_v2')) || {};
 
+        // Cada bloque: { id, type: 'materia'|'laburo', materiaId, title, day: 0..4, startHour: 7..16, duration: 1..10, isVirtual: boolean }
+        let horarioBlocks = JSON.parse(localStorage.getItem('lic_admin_horarios_v3')) || [];
+
+        // Materias 100% virtuales (asincrónicas o sin horario en grilla): [ { id, nombre } ]
+        let virtualMateriasList = JSON.parse(localStorage.getItem('lic_admin_virtual_list_v1')) || [];
+
+        const HORA_MIN = 7;
+        const HORA_MAX = 17; // Cubre exactamente 07:00 a 17:00 hs
+        const ROW_HEIGHT = 54; // Altura fija por cada fila de 1 hora
+        const DIAS_SEMANA = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+
+        let currentActiveBrush = {
+            type: 'laburo',
+            materiaId: null,
+            title: 'LABURO',
+            duration: 4
+        };
+        let currentPaletteFilter = 'todas';
         let clickTimer = null;
 
         function renderPlan() {
@@ -636,7 +1611,7 @@
                 final: document.getElementById('tramo-final')
             };
 
-            Object.values(containers).forEach(c => { if(c) c.innerHTML = ''; });
+            Object.values(containers).forEach(c => { if (c) c.innerHTML = ''; });
 
             let approvedCount = 0;
             let cursandoCount = cursandoIds.length;
@@ -693,7 +1668,7 @@
                 };
 
                 let targetContainer = containers[mat.seccion] || containers['final'];
-                targetContainer.appendChild(div);
+                if (targetContainer) targetContainer.appendChild(div);
             });
 
             const missingCount = totalMaterias - approvedCount;
@@ -747,14 +1722,553 @@
             localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
         }
 
-        function resetProgress() {
-            if (confirm('¿Estás seguro de reiniciar tu progreso académico?')) {
-                approvedIds = [];
-                cursandoIds = [];
-                localStorage.removeItem('lic_admin_approved_v2');
-                localStorage.removeItem('lic_admin_cursando_v2');
-                renderPlan();
+        function promptResetProgress() {
+            showModal(
+                'Reiniciar Progreso',
+                '¿Estás seguro de reiniciar todas las materias aprobadas y en curso?',
+                () => {
+                    approvedIds = [];
+                    cursandoIds = [];
+                    localStorage.removeItem('lic_admin_approved_v2');
+                    localStorage.removeItem('lic_admin_cursando_v2');
+                    renderPlan();
+                }
+            );
+        }
+
+        function initHorarios() {
+            renderPalette();
+            buildHorarioTable();
+            renderHorarioBlocks();
+            renderVirtualSection();
+        }
+
+        function buildHorarioTable() {
+            const tbody = document.getElementById('horario-tbody');
+            tbody.innerHTML = '';
+
+            for (let h = HORA_MIN; h < HORA_MAX; h++) {
+                const tr = document.createElement('tr');
+
+                const tdTime = document.createElement('td');
+                tdTime.className = 'time-cell';
+                const startStr = `${String(h).padStart(2, '0')}:00`;
+                const endStr = `${String(h + 1).padStart(2, '0')}:00`;
+                
+                tdTime.innerHTML = `
+                    <div class="time-cell-inner">
+                        <span class="time-cell-top" title="Hora de inicio">${startStr}</span>
+                        <span class="time-cell-divider">↓</span>
+                        <span class="time-cell-bottom" title="Hora de finalización">${endStr}</span>
+                    </div>
+                `;
+                tr.appendChild(tdTime);
+
+                for (let d = 0; d < 5; d++) {
+                    const tdSlot = document.createElement('td');
+                    tdSlot.className = 'horario-slot';
+                    tdSlot.dataset.day = d;
+                    tdSlot.dataset.hour = h;
+
+                    tdSlot.ondragover = (e) => {
+                        e.preventDefault();
+                        tdSlot.classList.add('drag-over');
+                    };
+                    tdSlot.ondragleave = () => tdSlot.classList.remove('drag-over');
+                    tdSlot.ondrop = (e) => handleSlotDrop(e, d, h);
+
+                    tdSlot.onclick = (e) => {
+                        if (e.target === tdSlot) {
+                            placeItemAt(d, h);
+                        }
+                    };
+
+                    tr.appendChild(tdSlot);
+                }
+                tbody.appendChild(tr);
             }
+        }
+
+        function renderHorarioBlocks() {
+            document.querySelectorAll('.h-block').forEach(el => el.remove());
+
+            const byDay = {};
+            for (let d = 0; d < 5; d++) byDay[d] = [];
+            horarioBlocks.forEach(b => {
+                if (byDay[b.day]) byDay[b.day].push(b);
+            });
+
+            const conflictDays = new Set();
+
+            Object.keys(byDay).forEach(d => {
+                const dayBlocks = byDay[d].sort((a, b) => a.startHour - b.startHour);
+
+                for (let i = 0; i < dayBlocks.length; i++) {
+                    const b = dayBlocks[i];
+                    const prev = dayBlocks[i - 1];
+                    const next = dayBlocks[i + 1];
+
+                    // Detección exacta: si el anterior termina justo donde este empieza
+                    const isJoinedTop = prev && (prev.startHour + prev.duration === b.startHour);
+                    const isJoinedBottom = next && (b.startHour + b.duration === next.startHour);
+
+                    // Conflicto solo cuando hay superposición real (no cuando están pegados)
+                    if (prev) {
+                        const prevEnd = prev.startHour + prev.duration;
+                        if (prevEnd > b.startHour) {
+                            conflictDays.add(DIAS_SEMANA[d]);
+                        }
+                    }
+
+                    const slot = document.querySelector(`.horario-slot[data-day="${b.day}"][data-hour="${b.startHour}"]`);
+                    if (!slot) continue;
+
+                    const blockEl = document.createElement('div');
+                    blockEl.className = `h-block ${b.type === 'laburo' ? 'is-laburo' : 'is-materia'}`;
+                    if (b.isVirtual) blockEl.classList.add('is-virtual');
+                    if (isJoinedTop) blockEl.classList.add('joined-top');
+                    if (isJoinedBottom) blockEl.classList.add('joined-bottom');
+
+                    blockEl.id = b.id;
+                    blockEl.setAttribute('draggable', 'true');
+
+                    const totalHeight = (b.duration * ROW_HEIGHT) - (isJoinedBottom ? 1 : 4);
+                    blockEl.style.height = `${totalHeight}px`;
+
+                    const endH = b.startHour + b.duration;
+                    const timeLabel = `${String(b.startHour).padStart(2, '0')}:00 - ${String(endH).padStart(2, '0')}:00`;
+
+                    const modalityBtn = b.type === 'materia' ? `
+                        <button class="h-block-btn btn-mode ${b.isVirtual ? 'is-virtual' : ''}" 
+                                title="Alternar entre Presencial y Virtual" 
+                                onclick="toggleBlockModality('${b.id}', event)">
+                            ${b.isVirtual ? '💻 Virt.' : '🏫 Pres.'}
+                        </button>
+                    ` : '';
+
+                    const printModality = b.type === 'materia' 
+                        ? (b.isVirtual ? '💻 Modalidad: Virtual' : '🏫 Modalidad: Presencial')
+                        : '💼 Actividad Laboral';
+
+                    blockEl.innerHTML = `
+                        <div class="block-top">
+                            <span class="block-title">${b.type === 'laburo' ? '💼 LABURO' : (b.isVirtual ? '💻 ' : '📚 ') + b.title}</span>
+                            <button class="block-close" title="Eliminar" onclick="removeBlock('${b.id}', event)">✕</button>
+                        </div>
+                        <div class="block-time-pill">
+                            <span>⏱️ ${timeLabel}</span>
+                            <span style="opacity: 0.7;">(${b.duration}h)</span>
+                        </div>
+                        <div class="print-modality-tag">${printModality}</div>
+                        <div class="block-tools">
+                            ${modalityBtn}
+                            <button class="h-block-btn" title="Achicar 1 hora" onclick="changeDuration('${b.id}', -1, event)">-1h</button>
+                            <button class="h-block-btn" title="Agrandar 1 hora" onclick="changeDuration('${b.id}', 1, event)">+1h</button>
+                            <button class="h-block-btn" title="Unir al bloque anterior sin espacio" onclick="joinToPreviousBlock('${b.id}', event)">🔗 Unir</button>
+                        </div>
+                        <div class="resizer-bottom" title="Estirar horario hacia abajo" onmousedown="initBlockResizing(event, '${b.id}')"></div>
+                    `;
+
+                    blockEl.ondragstart = (e) => {
+                        e.dataTransfer.setData('text/plain', JSON.stringify({
+                            action: 'move',
+                            blockId: b.id
+                        }));
+                    };
+
+                    slot.appendChild(blockEl);
+                }
+            });
+
+            const alertBox = document.getElementById('horarios-conflict-alert');
+            if (conflictDays.size > 0) {
+                alertBox.classList.add('visible');
+                alertBox.innerHTML = `⚠️ <strong>Superposición horaria:</strong> Tienes horarios solapados en: ${Array.from(conflictDays).join(', ')}.`;
+            } else {
+                alertBox.classList.remove('visible');
+            }
+
+            localStorage.setItem('lic_admin_horarios_v3', JSON.stringify(horarioBlocks));
+        }
+
+        function joinToPreviousBlock(blockId, event) {
+            if (event) event.stopPropagation();
+            const currentBlock = horarioBlocks.find(b => b.id === blockId);
+            if (!currentBlock) return;
+
+            const sameDayBlocks = horarioBlocks
+                .filter(b => b.day === currentBlock.day && b.id !== currentBlock.id)
+                .sort((a, b) => a.startHour - b.startHour);
+
+            let prevBlock = null;
+            for (let b of sameDayBlocks) {
+                if (b.startHour < currentBlock.startHour) {
+                    prevBlock = b;
+                }
+            }
+
+            if (prevBlock) {
+                const targetStart = prevBlock.startHour + prevBlock.duration;
+                if (targetStart >= HORA_MIN && targetStart < HORA_MAX) {
+                    currentBlock.startHour = targetStart;
+                    if (currentBlock.startHour + currentBlock.duration > HORA_MAX) {
+                        currentBlock.duration = Math.max(1, HORA_MAX - currentBlock.startHour);
+                    }
+                    renderHorarioBlocks();
+                }
+            } else {
+                currentBlock.startHour = HORA_MIN;
+                renderHorarioBlocks();
+            }
+        }
+
+        function changeDuration(blockId, delta, event) {
+            if (event) event.stopPropagation();
+            const b = horarioBlocks.find(item => item.id === blockId);
+            if (!b) return;
+
+            let newDur = b.duration + delta;
+            if (newDur < 1) newDur = 1;
+            if (b.startHour + newDur > HORA_MAX) {
+                newDur = HORA_MAX - b.startHour;
+            }
+            b.duration = newDur;
+            renderHorarioBlocks();
+        }
+
+        function toggleBlockModality(blockId, event) {
+            if (event) event.stopPropagation();
+            const b = horarioBlocks.find(item => item.id === blockId);
+            if (!b) return;
+
+            b.isVirtual = !b.isVirtual;
+            renderHorarioBlocks();
+        }
+
+        function placeItemAt(day, hour) {
+            let duration = currentActiveBrush.duration;
+            if (hour + duration > HORA_MAX) {
+                duration = HORA_MAX - hour;
+            }
+            if (duration <= 0) return;
+
+            horarioBlocks.push({
+                id: 'blk_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                type: currentActiveBrush.type,
+                materiaId: currentActiveBrush.materiaId,
+                title: currentActiveBrush.title,
+                day: day,
+                startHour: hour,
+                duration: duration,
+                isVirtual: false
+            });
+
+            renderHorarioBlocks();
+        }
+
+        function handleSlotDrop(e, day, hour) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+
+            const dataStr = e.dataTransfer.getData('text/plain');
+            if (!dataStr) return;
+
+            try {
+                const data = JSON.parse(dataStr);
+                if (data.action === 'new') {
+                    let dur = data.duration;
+                    if (hour + dur > HORA_MAX) dur = HORA_MAX - hour;
+                    if (dur <= 0) return;
+
+                    horarioBlocks.push({
+                        id: 'blk_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                        type: data.type,
+                        materiaId: data.materiaId || null,
+                        title: data.title,
+                        day: day,
+                        startHour: hour,
+                        duration: dur,
+                        isVirtual: false
+                    });
+                    renderHorarioBlocks();
+                } else if (data.action === 'move') {
+                    const blk = horarioBlocks.find(b => b.id === data.blockId);
+                    if (blk) {
+                        let dur = blk.duration;
+                        if (hour + dur > HORA_MAX) dur = HORA_MAX - hour;
+                        if (dur <= 0) return;
+                        blk.day = day;
+                        blk.startHour = hour;
+                        blk.duration = dur;
+                        renderHorarioBlocks();
+                    }
+                }
+            } catch (err) {
+                console.error("Drop error:", err);
+            }
+        }
+
+        function removeBlock(blockId, event) {
+            if (event) event.stopPropagation();
+            horarioBlocks = horarioBlocks.filter(b => b.id !== blockId);
+            renderHorarioBlocks();
+        }
+
+        function promptClearHorarios() {
+            showModal(
+                'Vaciar Horarios',
+                '¿Querés eliminar todos los bloques de materias y laburo del cronograma semanal?',
+                () => {
+                    horarioBlocks = [];
+                    localStorage.removeItem('lic_admin_horarios_v3');
+                    renderHorarioBlocks();
+                }
+            );
+        }
+
+        function initBlockResizing(event, blockId) {
+            event.stopPropagation();
+            event.preventDefault();
+
+            const block = horarioBlocks.find(b => b.id === blockId);
+            if (!block) return;
+
+            const startY = event.clientY;
+            const initDur = block.duration;
+
+            function onMouseMove(e) {
+                const deltaY = e.clientY - startY;
+                const hoursDelta = Math.round(deltaY / ROW_HEIGHT);
+                let newDur = initDur + hoursDelta;
+                if (newDur < 1) newDur = 1;
+                if (block.startHour + newDur > HORA_MAX) {
+                    newDur = HORA_MAX - block.startHour;
+                }
+                if (newDur !== block.duration) {
+                    block.duration = newDur;
+                    renderHorarioBlocks();
+                }
+            }
+
+            function onMouseUp() {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            }
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        }
+
+        function selectBrush(type, mat = null) {
+            if (type === 'laburo') {
+                const dur = parseInt(document.getElementById('laburo-hours-select').value) || 4;
+                currentActiveBrush = {
+                    type: 'laburo',
+                    materiaId: null,
+                    title: 'LABURO',
+                    duration: dur
+                };
+                document.getElementById('selected-brush-name').innerText = `💼 LABURO (${dur} hs)`;
+            } else if (mat) {
+                currentActiveBrush = {
+                    type: 'materia',
+                    materiaId: mat.id,
+                    title: mat.nombre,
+                    duration: 2 // Por especificación, las materias duran 2 horas
+                };
+                document.getElementById('selected-brush-name').innerText = `📚 ${mat.nombre} (2 hs)`;
+            }
+            highlightPaletteItem();
+        }
+
+        function updateLaburoHours() {
+            if (currentActiveBrush.type === 'laburo') {
+                selectBrush('laburo');
+            }
+        }
+
+        function handleLaburoDrag(e) {
+            const dur = parseInt(document.getElementById('laburo-hours-select').value) || 4;
+            selectBrush('laburo');
+            e.dataTransfer.setData('text/plain', JSON.stringify({
+                action: 'new',
+                type: 'laburo',
+                title: 'LABURO',
+                duration: dur
+            }));
+        }
+
+        function setFilter(filter) {
+            currentPaletteFilter = filter;
+            document.querySelectorAll('.palette-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            const labels = { 'cursando': 'Cursando', 'disponibles': 'Disponibles', 'todas': 'Todas' };
+            document.getElementById('palette-filter-title').innerText = labels[filter] || 'Todas';
+            renderPalette();
+        }
+
+        function filterPalette() {
+            renderPalette();
+        }
+
+        function renderPalette() {
+            const list = document.getElementById('materias-palette-list');
+            list.innerHTML = '';
+            const query = (document.getElementById('search-materia-input')?.value || '').toLowerCase();
+
+            const tramo1Ids = materiasData.filter(m => m.seccion === 1).map(m => m.id);
+            const tramo1Completo = tramo1Ids.every(id => approvedIds.includes(id));
+
+            const filtered = materiasData.filter(mat => {
+                const matchName = mat.nombre.toLowerCase().includes(query) || String(mat.id).includes(query);
+                if (!matchName) return false;
+
+                const isApp = approvedIds.includes(mat.id);
+                const isCur = cursandoIds.includes(mat.id);
+                let isAvail = false;
+                if (!isApp) {
+                    if (mat.seccion === 2 && mat.req.length === 6 && mat.req.includes(245)) {
+                        isAvail = tramo1Completo;
+                    } else if (mat.req.length === 0) {
+                        isAvail = true;
+                    } else {
+                        isAvail = mat.req.every(reqId => approvedIds.includes(reqId));
+                    }
+                }
+
+                if (currentPaletteFilter === 'cursando') return isCur;
+                if (currentPaletteFilter === 'disponibles') return isAvail;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                list.innerHTML = '<div style="font-size:0.75rem; color:#888; text-align:center; padding:10px;">No se encontraron materias.</div>';
+                return;
+            }
+
+            filtered.forEach(mat => {
+                const div = document.createElement('div');
+                div.className = 'palette-item';
+                div.id = `palette-item-${mat.id}`;
+                div.setAttribute('draggable', 'true');
+
+                if (currentActiveBrush.type === 'materia' && currentActiveBrush.materiaId === mat.id) {
+                    div.classList.add('is-selected');
+                }
+
+                div.innerHTML = `
+                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                        <span style="color:#64748b; font-size:0.65rem;">[${mat.id}]</span> ${mat.nombre}
+                    </div>
+                    <span class="badge-2h">2 hs</span>
+                `;
+
+                div.onclick = () => selectBrush('materia', mat);
+
+                div.ondragstart = (e) => {
+                    selectBrush('materia', mat);
+                    e.dataTransfer.setData('text/plain', JSON.stringify({
+                        action: 'new',
+                        type: 'materia',
+                        materiaId: mat.id,
+                        title: mat.nombre,
+                        duration: 2
+                    }));
+                };
+
+                list.appendChild(div);
+            });
+        }
+
+        function highlightPaletteItem() {
+            document.querySelectorAll('.palette-item').forEach(el => el.classList.remove('is-selected'));
+            if (currentActiveBrush.type === 'materia' && currentActiveBrush.materiaId) {
+                const el = document.getElementById(`palette-item-${currentActiveBrush.materiaId}`);
+                if (el) el.classList.add('is-selected');
+            }
+        }
+
+        /* GESTIÓN DE MATERIAS 100% VIRTUALES ASINCRÓNICAS */
+        function renderVirtualSection() {
+            const select = document.getElementById('select-virtual-materia');
+            if (select) {
+                select.innerHTML = '<option value="">Seleccionar materia...</option>';
+                materiasData.forEach(m => {
+                    const option = document.createElement('option');
+                    option.value = m.id;
+                    option.textContent = `[${m.id}] ${m.nombre}`;
+                    select.appendChild(option);
+                });
+            }
+
+            const listEl = document.getElementById('virtual-materias-list');
+            if (!listEl) return;
+
+            listEl.innerHTML = '';
+            if (virtualMateriasList.length === 0) {
+                listEl.innerHTML = '<div style="font-size:0.7rem; color:#888; text-align:center; padding: 6px;">No hay materias virtuales agregadas.</div>';
+                return;
+            }
+
+            virtualMateriasList.forEach(vm => {
+                const div = document.createElement('div');
+                div.className = 'virtual-item';
+                div.innerHTML = `
+                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding-right: 5px;">
+                        <span style="font-size:0.65rem; color:#7c3aed;">[${vm.id}]</span> <strong>${vm.nombre}</strong>
+                    </div>
+                    <button class="btn-small danger" style="padding: 1px 6px; font-size: 0.65rem;" onclick="removeVirtualMateria(${vm.id})">✕</button>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+
+        function addVirtualMateria() {
+            const select = document.getElementById('select-virtual-materia');
+            const matId = parseInt(select.value);
+            if (!matId) return;
+
+            if (virtualMateriasList.some(item => item.id === matId)) {
+                return;
+            }
+
+            const mat = materiasData.find(m => m.id === matId);
+            if (!mat) return;
+
+            virtualMateriasList.push({
+                id: mat.id,
+                nombre: mat.nombre
+            });
+
+            localStorage.setItem('lic_admin_virtual_list_v1', JSON.stringify(virtualMateriasList));
+            select.value = '';
+            renderVirtualSection();
+        }
+
+        function removeVirtualMateria(matId) {
+            virtualMateriasList = virtualMateriasList.filter(item => item.id !== matId);
+            localStorage.setItem('lic_admin_virtual_list_v1', JSON.stringify(virtualMateriasList));
+            renderVirtualSection();
+        }
+
+        function imprimirHorario() {
+            // Asegurarnos de estar en la pestaña de horarios
+            switchTab('horarios');
+
+            // Actualizar la lista impresa de materias virtuales al pie si existen
+            const footerEl = document.getElementById('print-virtual-footer');
+            const footerText = document.getElementById('print-virtual-list-text');
+            if (footerEl && footerText) {
+                if (virtualMateriasList && virtualMateriasList.length > 0) {
+                    footerText.textContent = virtualMateriasList.map(v => `[${v.id}] ${v.nombre}`).join(' • ');
+                    footerEl.style.display = 'block';
+                } else {
+                    footerEl.style.display = 'none';
+                }
+            }
+
+            // Invocar la impresión nativa
+            window.print();
         }
 
         function renderCronograma() {
@@ -776,7 +2290,7 @@
             const listaIds = Array.from(idsConFechasOActive);
 
             if (listaIds.length === 0) {
-                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 15px 0; font-size: 0.85rem;">No hay materias en curso. Marca materias como Cursando en el plan.</p>';
+                containerForm.innerHTML = '<p style="text-align:center; color:#777; padding: 15px 0; font-size: 0.85rem;">No hay materias en curso. Marcá materias como Cursando en el plan.</p>';
                 document.getElementById('proximo-examen-banner').style.display = 'none';
                 document.getElementById('timeline-lista').innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center; margin: 15px 0;">No hay fechas agendadas.</p>';
                 return;
@@ -821,7 +2335,7 @@
                 card.innerHTML = `
                     <h3>
                         <span>📚 ${mat.nombre}</span>
-                        <button style="font-size: 0.68rem; background: #6c757d; color: white; border: none; padding: 2px 6px; border-radius: 4px; cursor: pointer;" onclick="borrarFechasMateria(${mat.id})">Limpiar</button>
+                        <button style="font-size: 0.68rem; background: #6c757d; color: white; border: none; padding: 2px 6px; border-radius: 4px; cursor: pointer;" onclick="promptBorrarFechas(${mat.id})">Limpiar</button>
                     </h3>
 
                     <div class="exam-row">
@@ -888,7 +2402,6 @@
                 });
             }
 
-            // --- FILTRO DE PRÓXIMAS 2 SEMANAS (14 DÍAS) ---
             const hoy = new Date();
             hoy.setHours(0, 0, 0, 0);
 
@@ -952,16 +2465,39 @@
             renderCronograma();
         }
 
-        function borrarFechasMateria(materiaId) {
-            if (confirm('¿Limpiar fechas?')) {
-                if (examenesData[materiaId]) {
-                    delete examenesData[materiaId];
-                    localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
-                    renderCronograma();
+        function promptBorrarFechas(materiaId) {
+            showModal(
+                'Limpiar Fechas',
+                '¿Querés borrar las fechas de exámenes cargadas para esta materia?',
+                () => {
+                    if (examenesData[materiaId]) {
+                        delete examenesData[materiaId];
+                        localStorage.setItem('lic_admin_examenes_v2', JSON.stringify(examenesData));
+                        renderCronograma();
+                    }
                 }
-            }
+            );
         }
 
+        let modalConfirmCallback = null;
+
+        function showModal(title, desc, onConfirm) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            modalConfirmCallback = onConfirm;
+            document.getElementById('modal-confirm-btn').onclick = () => {
+                if (modalConfirmCallback) modalConfirmCallback();
+                closeModal();
+            };
+            document.getElementById('custom-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.remove('active');
+            modalConfirmCallback = null;
+        }
+
+        // Inicialización al cargar la aplicación
         renderPlan();
     </script>
 </body>
